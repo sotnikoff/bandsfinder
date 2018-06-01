@@ -1,4 +1,5 @@
 h1= @user.email
+h3 Musician profile
 - if @user.musician
   ul
     li= link_to 'show page', musician_path(current_user.id)
@@ -6,3 +7,8 @@ h1= @user.email
 - else
   = form_tag(musicians_path) do
     = submit_tag 'create'
+h3 Group owner
+ul
+  - @user.groups.all.each do |group|
+    li= link_to group.id, group_path(group.id)
+=link_to 'create a band', new_group_path

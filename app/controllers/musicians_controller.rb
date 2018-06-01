@@ -11,8 +11,8 @@ class MusiciansController < ApplicationController
   def edit; end
 
   def destroy
-    musician = Musician.where(user_id: current_user.id)
-    musician.destroy_all
+    musician = Musician.where(user_id: current_user.id).first
+    Musician.destroy(musician.id)
     redirect_to profile_path(current_user.id)
   end
 end
