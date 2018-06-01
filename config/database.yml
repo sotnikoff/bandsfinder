@@ -5,12 +5,12 @@ default: &default
 
 development:
   <<: *default
-  database: vchat_development
+  database: bandsfinder_development
 
 test:
   <<: *default
-  database: vchat_test
+  database: bandsfinder_test
 
 production:
   <<: *default
-  database: vchat_production
+  database: bandsfinder_production

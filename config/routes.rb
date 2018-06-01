@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :musicians, only: %i[show edit create update] do
       delete '/', action: 'destroy', on: :collection
     end
-    resources :groups
+    resources :bands
     root 'pages#index'
   end
 

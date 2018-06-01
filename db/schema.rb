@@ -10,31 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_01_063408) do
+ActiveRecord::Schema.define(version: 2018_06_01_104832) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "chats", force: :cascade do |t|
-    t.string "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "groups", force: :cascade do |t|
+  create_table "bands", force: :cascade do |t|
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_groups_on_user_id"
+    t.index ["user_id"], name: "index_bands_on_user_id"
   end
 
-  create_table "messages", force: :cascade do |t|
-    t.string "bot"
-    t.text "text"
-    t.bigint "chat_id"
+  create_table "musician_skills", force: :cascade do |t|
+    t.bigint "musician_id"
+    t.bigint "skill_id"
+    t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["chat_id"], name: "index_messages_on_chat_id"
+    t.index ["musician_id"], name: "index_musician_skills_on_musician_id"
+    t.index ["skill_id"], name: "index_musician_skills_on_skill_id"
   end
 
   create_table "musicians", force: :cascade do |t|
@@ -42,6 +37,13 @@ ActiveRecord::Schema.define(version: 2018_06_01_063408) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_musicians_on_user_id"
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -61,7 +63,8 @@ ActiveRecord::Schema.define(version: 2018_06_01_063408) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "groups", "users"
-  add_foreign_key "messages", "chats"
+  add_foreign_key "bands", "users"
+  add_foreign_key "musician_skills", "musicians"
+  add_foreign_key "musician_skills", "skills"
   add_foreign_key "musicians", "users"
 end
