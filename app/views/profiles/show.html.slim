@@ -1,0 +1,8 @@
+h1= @user.email
+- if @user.musician
+  ul
+    li= link_to 'show page', musician_path(current_user.id)
+    li= link_to 'delete page', musicians_path, method: :delete
+- else
+  = form_tag(musicians_path) do
+    = submit_tag 'create'
