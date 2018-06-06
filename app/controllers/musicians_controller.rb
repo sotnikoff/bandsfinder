@@ -2,8 +2,8 @@ class MusiciansController < ApplicationController
   def show; end
 
   def create
-    Musician.find_or_create_by(user_id: current_user.id)
-    redirect_to profile_path(current_user.id)
+    musician = Musician.find_or_create_by(user_id: current_user.id)
+    redirect_to musician_path(musician)
   end
 
   def update; end
