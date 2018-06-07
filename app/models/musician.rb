@@ -1,5 +1,5 @@
 class Musician < ApplicationRecord
   belongs_to :user
   has_many :musician_skills
-  update_index('musicians#musician')
+  has_and_belongs_to_many :bands
 end

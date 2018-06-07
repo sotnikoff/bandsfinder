@@ -28,7 +28,12 @@ class BandRequestsController < ApplicationController
   end
 
   def operate_approval
-    @band_request.status_approved! if @band_request.status_new?
+    if @band_request.status_new?
+      @band_request.status_approved!
+      band = @band_request.band
+      musician = @band_request.musician
+      band.musicians << musician unless band.musicians.exists?(musician.id)
+    end
     redirect_to band_path(@band_request.band.id)
   end
 
