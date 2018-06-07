@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'band_requests/approve'
-  get 'band_requests/decline'
-  get 'band_requests/revoke'
   scope format: false do
     get 'profiles/:id', to: 'profiles#show', as: 'profile'
     devise_for :users
@@ -10,10 +7,10 @@ Rails.application.routes.draw do
     end
 
     scope 'band_requests' do
-      post 'create', to: 'band_requests#create'
-      post ':id/approve', to: 'band_requests#approve'
-      post ':id/decline', to: 'band_requests#decline'
-      post ':id/revoke', to: 'band_requests#revoke'
+      post 'create', to: 'band_requests#create', as: 'band_requests_create'
+      post ':id/approve', to: 'band_requests#approve', as: 'band_request_approve'
+      post ':id/decline', to: 'band_requests#decline', as: 'band_request_decline'
+      post ':id/revoke', to: 'band_requests#revoke', as: 'band_request_revoke'
     end
     resources :bands
     root 'pages#index'

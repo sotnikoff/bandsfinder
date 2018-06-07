@@ -1,2 +1,16 @@
 h1= "Band ##{@band.id}"
 h2= "Owner is #{@band.user.email}"
+- if current_user.musician
+  - if @has_request
+    p request already sent
+  - else
+    = form_tag(band_requests_create_path) do
+      = hidden_field_tag :band_id, @band.id
+      = submit_tag 'Submit request'
+- else
+  p you cannot send your request because you are not a registered musician
+- if @band.user.id == current_user.id
+  - @band.band_requests.each do |req|
+    p= "Request ##{req.id}"
+    = form_tag(band_request_approve_path(id: req.id))
+      = submit_tag 'Approve request'

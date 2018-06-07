@@ -4,6 +4,7 @@ class CreateBandRequests < ActiveRecord::Migration[5.2]
       t.references :musician, foreign_key: true
       t.references :band, foreign_key: true
       t.text :body
+      t.string :status, default: 'new'
 
       t.timestamps
     end
