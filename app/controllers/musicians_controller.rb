@@ -1,4 +1,6 @@
 class MusiciansController < ApplicationController
+  before_action :find_musician, only: %i[show edit]
+
   def show; end
 
   def create
@@ -14,5 +16,11 @@ class MusiciansController < ApplicationController
     musician = Musician.where(user_id: current_user.id).first
     Musician.destroy(musician.id)
     redirect_to profile_path(current_user.id)
+  end
+
+  private
+
+  def find_musician
+    @musician = Musician.find(params[:id])
   end
 end

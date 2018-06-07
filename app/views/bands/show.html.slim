@@ -12,5 +12,10 @@ h2= "Owner is #{@band.user.email}"
 - if @band.user.id == current_user.id
   - @band.band_requests.each do |req|
     p= "Request ##{req.id}"
-    = form_tag(band_request_approve_path(id: req.id))
-      = submit_tag 'Approve request'
+    - if req.status_approved? || req.status_declined?
+      p= req.status.humanize
+    - else
+      = form_tag(band_request_approve_path(id: req.id))
+        = submit_tag 'Approve request'
+      = form_tag(band_request_decline_path(id: req.id))
+        = submit_tag 'Reject request'

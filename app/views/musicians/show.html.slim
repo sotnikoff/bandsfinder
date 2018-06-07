@@ -1,0 +1,6 @@
+h1 Skills
+ul
+- @musician.musician_skills.each do |musician_skill|
+  li= "#{musician_skill.skill.title} (#{musician_skill.comment})"
+- if @musician.user.id == current_user.id
+  = link_to 'edit profile', edit_musician_path(@musician.id)

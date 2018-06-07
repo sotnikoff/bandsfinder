@@ -11,6 +11,7 @@ class BandRequestsController < ApplicationController
   end
 
   def decline
+    operate_decline
   end
 
   def revoke
@@ -27,7 +28,12 @@ class BandRequestsController < ApplicationController
   end
 
   def operate_approval
-    puts @band_request.status
+    @band_request.status_approved! if @band_request.status_new?
+    redirect_to band_path(@band_request.band.id)
+  end
+
+  def operate_decline
+    @band_request.status_declined! if @band_request.status_new?
     redirect_to band_path(@band_request.band.id)
   end
 end

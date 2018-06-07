@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :musicians, only: %i[show edit create update] do
       delete '/', action: 'destroy', on: :collection
     end
+    resources :musician_skills, only: %i[create destroy]
 
     scope 'band_requests' do
       post 'create', to: 'band_requests#create', as: 'band_requests_create'
