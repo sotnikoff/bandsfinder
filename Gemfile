@@ -38,6 +38,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'devise'
 gem 'font-roboto-rails'
+gem 'pundit'
 gem 'ransack'
 gem 'slim'
 
