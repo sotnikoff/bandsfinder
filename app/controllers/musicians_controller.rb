@@ -14,6 +14,7 @@ class MusiciansController < ApplicationController
 
   def destroy
     musician = Musician.where(user_id: current_user.id).first
+    authorize musician
     Musician.destroy(musician.id)
     redirect_to profile_path(current_user.id)
   end
@@ -22,5 +23,6 @@ class MusiciansController < ApplicationController
 
   def find_musician
     @musician = Musician.find(params[:id])
+    authorize @musician
   end
 end

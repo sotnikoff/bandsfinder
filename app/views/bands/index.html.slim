@@ -1,0 +1,4 @@
+h1 Bands
+ul
+- @bands.each do |band|
+  li= link_to band.id, band_path(band)

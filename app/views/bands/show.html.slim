@@ -1,5 +1,9 @@
 h1= "Band ##{@band.id}"
-h2= "Owner is #{@band.user.email}"
+h3= "Owner is #{@band.user.email}"
+h3 Members are
+ul
+  - @band.musicians.each do |member|
+    li= member.user.email
 - if current_user.musician
   - if @has_request
     p request already sent

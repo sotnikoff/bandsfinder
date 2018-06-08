@@ -1,0 +1,148 @@
+.roboto-bold {
+  font-family: Roboto-Bold, sans-serif;
+}
+.roboto-light {
+  font-family: Roboto-Light, sans-serif;
+}
+.roboto-regular {
+  font-family: Roboto-Regular, sans-serif;
+}
+.roboto-lightItalic {
+  font-family: Roboto-LightItalic, sans-serif;
+}
+.yellow-font {
+  color: #f5a623;
+}
+.icon-control {
+  cursor: pointer;
+}
+.logo {
+  font-family: Roboto-Bold, sans-serif;
+  color: #000;
+  font-size: 1.8rem;
+  margin: 20px 0 20px 0!important;
+}
+.logo span {
+  color: #f5a623;
+}
+.site-block {
+  background-color: #ffffff;
+  box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.23);
+}
+header {
+  margin-top: 10px;
+}
+#logo_wrapper {
+  float: left;
+}
+#user {
+  float: right;
+}
+.userpic {
+  border-radius: 23px;
+  background-size: contain;
+  width: 45px;
+  height: 45px;
+  margin: 11px 7px 0 0;
+  float: left;
+}
+.username_wrapper {
+  float: right;
+}
+.username {
+  font-family: Roboto-Light, sans-serif;
+  font-size: 1.2rem;
+  margin-top: 25px;
+  float: right;
+}
+nav ul {
+  margin-bottom: 0 !important;
+  list-style: none;
+  padding-left: 0;
+}
+nav ul a {
+  text-decoration: none;
+}
+.page-navbar {
+  background-color: #ffffff;
+  box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.23);
+  padding: 0 19px 0 19px;
+}
+.page-navbar ul {
+  width: 100%;
+  height: 50px;
+  position: relative;
+  display: table;
+  margin: 0;
+  padding: 0;
+}
+.page-navbar ul li {
+  display: table-cell;
+  position: relative;
+}
+.page-navbar ul li:nth-of-type(1) a {
+  text-align: left;
+}
+.page-navbar ul a {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 50px;
+  font-family: Roboto-Light, sans-serif;
+  font-size: 1.2rem;
+  color: #ababab;
+}
+.active-li {
+  border-top: solid 3px #fca28b;
+}
+.active-li a {
+  color: #323232;
+}
+aside,
+article {
+  background-color: #ffffff;
+  box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.23);
+}
+aside {
+  padding: 19px 0 36px 19px !important;
+}
+aside ul a {
+  color: #707070;
+  font-family: Roboto-Regular, sans-serif;
+  font-size: 1.2rem;
+}
+aside ul li {
+  line-height: 1;
+}
+aside ul li:nth-of-type(2) {
+  margin-top: 22px;
+}
+aside ul li:nth-of-type(n + 3) {
+  margin-top: 6px;
+}
+aside ul li:nth-of-type(10) {
+  margin-top: 24px;
+}
+aside ul li:nth-of-type(n + 10) a {
+  color: #c3c0c0;
+}
+aside ul li:nth-of-type(n + 11) {
+  margin-top: 3px;
+}
+.more-span {
+  display: inline-block;
+  float: right;
+  color: #000;
+  font-size: 0.4rem;
+  margin-top: 1.3rem;
+  opacity: 0.15;
+  cursor: pointer;
+}
+.pane-hr {
+  color: #ededed;
+  height: 2px;
+  clear: both;
+  margin: 0 !important;
+}

@@ -4,7 +4,9 @@ class BandsController < ApplicationController
     @has_request = check_requests
   end
 
-  def index; end
+  def index
+    @bands = Band.all
+  end
 
   def new
     @band = Band.new

@@ -37,8 +37,16 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'devise'
+gem 'font-roboto-rails'
+gem 'pundit'
 gem 'ransack'
 gem 'slim'
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-bootstrap', '3.3.7'
+  gem 'rails-assets-icomoon'
+  gem 'rails-assets-roboto-fontface'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

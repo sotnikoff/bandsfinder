@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_04_135026) do
+ActiveRecord::Schema.define(version: 2018_06_08_075710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,13 @@ ActiveRecord::Schema.define(version: 2018_06_04_135026) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_bands_on_user_id"
+  end
+
+  create_table "bands_musicians", force: :cascade do |t|
+    t.bigint "band_id"
+    t.bigint "musician_id"
+    t.index ["band_id"], name: "index_bands_musicians_on_band_id"
+    t.index ["musician_id"], name: "index_bands_musicians_on_musician_id"
   end
 
   create_table "musician_skills", force: :cascade do |t|
@@ -77,6 +84,8 @@ ActiveRecord::Schema.define(version: 2018_06_04_135026) do
   add_foreign_key "band_requests", "bands"
   add_foreign_key "band_requests", "musicians"
   add_foreign_key "bands", "users"
+  add_foreign_key "bands_musicians", "bands"
+  add_foreign_key "bands_musicians", "musicians"
   add_foreign_key "musician_skills", "musicians"
   add_foreign_key "musician_skills", "skills"
   add_foreign_key "musicians", "users"

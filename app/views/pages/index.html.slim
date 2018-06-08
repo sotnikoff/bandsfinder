@@ -1,3 +1,29 @@
-ul
-  li= link_to 'Login', new_user_session_path
-  li= link_to 'Register', new_user_registration_path
+doctype html
+html[lang="en"]
+  head
+    meta[charset="UTF-8"]
+    title Bandsfinder
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+  body.index_body
+    #container
+      #content
+        #description
+          h1.logo_index
+            span
+              | Bands
+            | Finder
+          p.info.info-header
+            | cервис поиска единомышленников
+          p.info.info-text
+            | С помощью BandsFinder вы сможете найти новых музыкантов,
+            br
+            |  вступить в группу, найти композиторов и авторов текстов
+        form.login-form[action="#" method="post"]
+          p.login-form-text
+            | Зарегистрируйтесь сейчас
+          input.login-form-input[type="email" placeholder="Адрес электронной почты…"]
+          input.login-form-input[type="password" placeholder="Пароль…"]
+          input.login-form-submit[type="submit" value="Зарегистрироваться"]
