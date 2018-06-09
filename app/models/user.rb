@@ -5,4 +5,6 @@ class User < ApplicationRecord
     :recoverable, :rememberable, :trackable, :validatable
   has_one :musician
   has_many :bands
+  belongs_to :city
+  has_one_attached :avatar
 end

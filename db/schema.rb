@@ -10,10 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_08_075710) do
+ActiveRecord::Schema.define(version: 2018_06_09_105834) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
 
   create_table "band_requests", force: :cascade do |t|
     t.bigint "musician_id"
@@ -38,6 +59,22 @@ ActiveRecord::Schema.define(version: 2018_06_08_075710) do
     t.bigint "musician_id"
     t.index ["band_id"], name: "index_bands_musicians_on_band_id"
     t.index ["musician_id"], name: "index_bands_musicians_on_musician_id"
+  end
+
+  create_table "cities", force: :cascade do |t|
+    t.string "title"
+    t.string "code"
+    t.bigint "country_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["country_id"], name: "index_cities_on_country_id"
+  end
+
+  create_table "countries", force: :cascade do |t|
+    t.string "title"
+    t.string "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "musician_skills", force: :cascade do |t|
@@ -77,6 +114,10 @@ ActiveRecord::Schema.define(version: 2018_06_08_075710) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.text "description"
+    t.bigint "city_id"
+    t.index ["city_id"], name: "index_users_on_city_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -86,7 +127,9 @@ ActiveRecord::Schema.define(version: 2018_06_08_075710) do
   add_foreign_key "bands", "users"
   add_foreign_key "bands_musicians", "bands"
   add_foreign_key "bands_musicians", "musicians"
+  add_foreign_key "cities", "countries"
   add_foreign_key "musician_skills", "musicians"
   add_foreign_key "musician_skills", "skills"
   add_foreign_key "musicians", "users"
+  add_foreign_key "users", "cities"
 end
