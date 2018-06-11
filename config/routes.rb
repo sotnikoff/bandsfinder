@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   scope format: false do
     get 'profiles/:id', to: 'profiles#show', as: 'profile'
 
