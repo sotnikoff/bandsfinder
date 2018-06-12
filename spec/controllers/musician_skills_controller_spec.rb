@@ -1,40 +1,24 @@
 require 'rails_helper'
 
 RSpec.describe MusicianSkillsController, type: :controller do
-
-  describe "GET #new" do
-    it "returns http success" do
-      get :new
-      expect(response).to have_http_status(:success)
+  describe 'POST #create' do
+    it 'returns :found' do
+      musician_skill = build :musician_skill
+      post :create, params: {
+        musician_id: musician_skill.musician.id,
+        skill_id: musician_skill.skill.id,
+        comment: musician_skill.comment
+      }
     end
   end
 
-  describe "GET #create" do
-    it "returns http success" do
-      get :create
-      expect(response).to have_http_status(:success)
+  describe 'DELETE #destroy' do
+    it 'returns :found' do
+      musician_skill = create :musician_skill
+      delete :destroy, params: {
+        id: musician_skill.id,
+        musician_id: musician_skill.musician.id
+      }
     end
   end
-
-  describe "GET #edit" do
-    it "returns http success" do
-      get :edit
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET #update" do
-    it "returns http success" do
-      get :update
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET #destroy" do
-    it "returns http success" do
-      get :destroy
-      expect(response).to have_http_status(:success)
-    end
-  end
-
 end

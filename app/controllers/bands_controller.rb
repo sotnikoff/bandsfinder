@@ -30,7 +30,7 @@ class BandsController < ApplicationController
   private
 
   def check_requests
-    request = BandRequest.where(musician_id: current_user.musician, band_id: params[:id]).first
+    request = BandRequest.where(musician_id: current_user&.musician, band_id: params[:id]).first
     request ? true : false
   end
 end

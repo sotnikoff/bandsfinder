@@ -2,7 +2,7 @@ class BandRequestsController < ApplicationController
   before_action :check_owner, only: %i[approve decline]
 
   def create
-    BandRequest.find_or_create_by(musician_id: current_user.id, band_id: params[:band_id])
+    BandRequest.find_or_create_by(musician_id: current_user.musician.id, band_id: params[:band_id])
     redirect_to band_path(params[:band_id])
   end
 
@@ -14,8 +14,7 @@ class BandRequestsController < ApplicationController
     operate_decline
   end
 
-  def revoke
-  end
+  def revoke; end
 
   private
 

@@ -1,0 +1,15 @@
+addons:
+  postgresql: 9.6
+before_script:
+  - cp config/database.travis.yml config/database.yml
+  - psql -c 'create database flashcards_test;' -U postgres
+  - gem install bundler
+dist: trusty
+language: ruby
+rvm:
+  - 2.5.1
+script:
+  - bundle exec rails db:create
+  - bin/bundle exec rubocop
+  - bundle exec rails db:migrate RAILS_ENV=test
+  - bundle exec rspec

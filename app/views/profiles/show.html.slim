@@ -1,5 +1,6 @@
 h1= @user.email
 h3 Musician profile
+p= link_to 'Edit my profile', edit_user_registration_path
 - if @user.musician
   ul
     li= link_to 'show page', musician_path(current_user.id)
