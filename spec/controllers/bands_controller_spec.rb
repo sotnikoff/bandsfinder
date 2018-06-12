@@ -17,6 +17,13 @@ RSpec.describe BandsController, type: :controller do
     end
   end
 
+  describe 'GET #edit' do
+    it 'returns 200' do
+      get :edit, params: { id: band }
+      expect(response).to be_successful
+    end
+  end
+
   describe 'GET #new' do
     it 'returns 200' do
       get :new
