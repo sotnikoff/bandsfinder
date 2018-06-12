@@ -1,5 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe BandRequest, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:band) { create :band }
+  let(:musician) { create :musician }
+
+  it 'validates with musician and band' do
+    band_request = BandRequest.new(band: band, musician: musician)
+    expect(band_request).to be_valid
+  end
 end
