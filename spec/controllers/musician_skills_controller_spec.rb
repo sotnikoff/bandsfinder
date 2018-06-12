@@ -16,8 +16,8 @@ RSpec.describe MusicianSkillsController, type: :controller do
     it 'returns :found' do
       musician_skill = create :musician_skill
       delete :destroy, params: {
-          id: musician_skill.id,
-          musician_id: musician_skill.musician.id
+        id: musician_skill.id,
+        musician_id: musician_skill.musician.id
       }
     end
   end
