@@ -14,8 +14,7 @@ class BandRequestsController < ApplicationController
     operate_decline
   end
 
-  def revoke
-  end
+  def revoke; end
 
   private
 

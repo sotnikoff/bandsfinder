@@ -33,6 +33,7 @@ Metrics/BlockLength:
     - app/api/**/*.rb
     - config/routes.rb
     - spec/**/*.rb
+    - app/admin/**/*.rb
 
 Metrics/ClassLength:
   Max: 210
@@ -61,6 +62,7 @@ Style/BracesAroundHashParameters:
 
 Style/ClassAndModuleChildren:
   EnforcedStyle: nested
+  Enabled: false
 
 Style/FrozenStringLiteralComment:
   Enabled: false

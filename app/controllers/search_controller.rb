@@ -4,6 +4,5 @@ class SearchController < ApplicationController
     @musicians = @query.result(distinct: true)
   end
 
-  def bands
-  end
+  def bands; end
 end
