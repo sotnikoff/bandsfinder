@@ -37,6 +37,7 @@ gem 'mini_magick', '~> 4.8'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'activeadmin'
+gem 'aws-sdk-s3'
 gem 'devise'
 gem 'font-roboto-rails'
 gem 'pundit'
