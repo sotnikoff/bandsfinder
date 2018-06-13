@@ -1,7 +1,75 @@
-h1 Musicians search
-= search_form_for @query, url: search_musicians_path do |f|
-  p= f.label :musician_skills_skill_id_eq
-  p= f.select :musician_skills_skill_id_eq, options_from_collection_for_select(Skill.all, 'id', 'title')
-  p= f.submit
-- @musicians.each do |musician|
-  p= link_to musician.user.email, musician_path(musician.id)
+nav.page-navbar
+  ul#news-menu
+    li
+      a href="#"  Тип поиска
+    li
+      a href="#"  Группы
+    li
+      a href="#"  Музыканты
+    li
+      a href="#"  Авторы текстов
+    li
+      a href="#"  Композиторы
+    li
+      a href="#"  Студии
+    li
+      a href="#"  Продюсеры
+#search-pane
+  .search-pane-title
+    p Поиск
+    span.icon-ic-more.more-span
+  hr.pane-hr
+  .search-pane-content
+    = search_form_for @query, url: search_musicians_path do |f|
+      .col-md-6.form-half
+        label.search-label for="city"  Город
+        input#city.search-input name="city" placeholder="Москва" type="text" /
+        label.search-label for="experience"  Опыт
+        input#experience.search-input name="experience" placeholder=("От 20 лет") type="text" /
+        = f.submit 'Поиск', class: 'search-submit'
+      .col-md-6.form-half
+        label.search-label for="skill"  Навык/специальность
+        / input#skill.search-input name="skill" placeholder="Электрогитара" type="text" /
+        = f.select :musician_skills_skill_id_eq,
+                options_from_collection_for_select(Skill.all, 'id', 'title'), {}, { class: 'form-select' }
+#result-pane
+  - @musicians.each do |musician|
+    .result-note
+      img alt="photo" src="images/angus_yang.png" /
+      .result-info
+        p
+          span= musician.user.name
+          | @angus
+        p Австралия, Сидней, гитара, вокал
+  ul.result-pag
+    li
+      a.active href="#"  1
+    li
+      a href="#"  2
+    li
+      a href="#"  3
+    li
+      a href="#"  4
+    li
+      a href="#"  5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/ = search_form_for @query, url: search_musicians_path do |f|
+/   p= f.label :musician_skills_skill_id_eq
+/   p= f.select :musician_skills_skill_id_eq, options_from_collection_for_select(Skill.all, 'id', 'title')
+/   p= f.submit
+/ - @musicians.each do |musician|
+/   p= link_to musician.user.email, musician_path(musician.id)
