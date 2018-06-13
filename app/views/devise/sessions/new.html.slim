@@ -1,0 +1,16 @@
+#container.col-md-6.col-md-offset-3
+  #news-content.row
+    main.col-md-9
+      #search-pane
+        .search-pane-title
+          p Sign in
+        hr.pane-hr
+        .search-pane-content
+          = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+            .col-md-8.form-half
+              = f.label :email, class: 'search-label'
+              = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'search-input'
+              = f.label :password, class: 'search-label'
+              = f.password_field :password, autocomplete: 'off', class: 'search-input'
+              .form-group
+                = f.submit 'Log in', class: 'search-submit'

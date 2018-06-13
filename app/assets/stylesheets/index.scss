@@ -77,3 +77,24 @@
   border: solid 1px #f5a623;
   font-size: 1.4rem;
 }
+#btn-auth-wrapper {
+  text-align: center;
+  margin: 90px 0 0 0;
+}
+.redirect-auth-btn {
+  color: #f5a623;
+  font-family: Roboto-Light, sans-serif;
+  padding: 13px 33px 13px 33px;
+  border: solid 1px #f5a623;
+  font-size: 1.4rem;
+  border-radius: 12px;
+  outline-style: none;
+  background-color: transparent;
+}
+.redirect-auth-btn:hover {
+  text-decoration: none;
+  color: #f5a623;
+}
+.redirect-auth-btn:nth-of-type(2) {
+  margin-left: 40px;
+}

@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   scope format: false do
     get 'profiles/:id', to: 'profiles#show', as: 'profile'
 
-    devise_for :users, controllers: { registrations: 'users/registrations' }
+    devise_for :users, controllers: {
+      registrations: 'users/registrations',
+      sessions: 'users/sessions'
+    }
 
     resources :musicians, only: %i[show edit create update] do
       delete '/', action: 'destroy', on: :collection

@@ -1,0 +1,24 @@
+#container.col-md-6.col-md-offset-2
+  #news-content.row
+    main.col-md-9
+      #search-pane
+        .search-pane-title
+          p Sign up
+        hr.pane-hr/
+        .search-pane-content
+          .col-md-8.form-half
+            = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+              = devise_error_messages!
+              = f.label :email, class: 'search-label'
+              = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'search-input'
+              = f.label :name, class: 'search-label'
+              = f.text_field :name, class: 'search-input', autocomplete: 'off'
+              = f.label :city_id, class: 'search-label'
+              = f.text_field :city_id, class: 'search-input', autocomplete: 'off'
+              = f.label :avatar, class: 'search-label'
+              = f.file_field :avatar, class: 'search-input'
+              = f.label :password, class: 'search-label'
+              = f.password_field :password, autocomplete: 'off', class: 'search-input'
+              = f.label :password_confirmation, class: 'search-label'
+              = f.password_field :password_confirmation, autocomplete: 'off', class: 'search-input'
+              = f.submit 'Sign up', class: 'search-submit'
