@@ -34,9 +34,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    render :edit, layout: 'application'
+  end
 
   # PUT /resource
   # def update
