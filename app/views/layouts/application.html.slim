@@ -38,9 +38,9 @@ html
           nav
             ul
               li
-                a href="#"  Поиск
+                = link_to 'Search musician', search_musicians_path
               li
-                a href="#"  Мой профиль
+                = link_to 'My profile', profile_path(current_user)
               li
                 a href="#"  Мои новости
               li
