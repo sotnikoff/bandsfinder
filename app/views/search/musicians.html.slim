@@ -22,25 +22,30 @@ nav.page-navbar
   .search-pane-content
     = search_form_for @query, url: search_musicians_path do |f|
       .col-md-6.form-half
-        label.search-label for="city"  Город
-        input#city.search-input name="city" placeholder="Москва" type="text" /
+        label.search-label for='city'  Город
+        input#city.search-input name='city' placeholder='Москва' type='text' /
         label.search-label for="experience"  Опыт
-        input#experience.search-input name="experience" placeholder=("От 20 лет") type="text" /
+        input#experience.search-input name="experience" placeholder='От 20 лет' type="text" /
         = f.submit 'Поиск', class: 'search-submit'
       .col-md-6.form-half
         label.search-label for="skill"  Навык/специальность
         / input#skill.search-input name="skill" placeholder="Электрогитара" type="text" /
         = f.select :musician_skills_skill_id_eq,
-                options_from_collection_for_select(Skill.all, 'id', 'title'), {}, { class: 'form-select' }
+                options_from_collection_for_select(Skill.all, 'id', 'title', @query.musician_skills_skill_id_eq),
+                {}, { class: 'form-select' }
 #result-pane
   - @musicians.each do |musician|
     .result-note
-      img alt="photo" src="images/angus_yang.png" /
-      .result-info
-        p
-          span= musician.user.name
-          | @angus
-        p Австралия, Сидней, гитара, вокал
+      = link_to musician_path(musician)
+        / img alt="photo" src="images/angus_yang.png" /
+        = image_tag(musician.user.avatar.variant(combine_options: { resize: '440',
+                gravity: 'center', extent: '300x300' })) if musician.user.avatar.attached?
+        .result-info
+          p
+            span= musician.user.name
+            | @angus
+          - skills = (musician.musician_skills.map { |skill| skill.skill.title }).join(', ')
+          p= "#{musician.user.city.region.country.title}, #{musician.user.city.region.title}, #{musician.user.city.title}, #{skills}"
   ul.result-pag
     li
       a.active href="#"  1

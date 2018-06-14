@@ -26,8 +26,10 @@ html
         header
           #logo_wrapper
             p.logo
-              span Bands
-              | Finder
+              - if current_user
+                = link_to profile_path(current_user) do
+                  span Bands
+                  | Finder
           - if current_user
             #user
               - if current_user.avatar.attached?
