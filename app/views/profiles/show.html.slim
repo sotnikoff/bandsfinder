@@ -3,7 +3,7 @@ h3 Musician profile
 p= link_to 'Edit my profile', edit_user_registration_path
 - if @user.musician
   ul
-    li= link_to 'show page', musician_path(current_user.id)
+    li= link_to 'show page', musician_path(current_user.musician.id)
     li= link_to 'delete page', musicians_path, method: :delete
 - else
   = form_tag(musicians_path) do
