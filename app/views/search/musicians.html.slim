@@ -32,7 +32,7 @@ nav.page-navbar
         / input#skill.search-input name="skill" placeholder="Электрогитара" type="text" /
         = f.select :musician_skills_skill_id_eq,
                 options_from_collection_for_select(Skill.all, 'id', 'title', @query.musician_skills_skill_id_eq),
-                {}, { class: 'form-select' }
+                { include_blank: true }, { class: 'form-select' }
 #result-pane
   - @musicians.each do |musician|
     .result-note
