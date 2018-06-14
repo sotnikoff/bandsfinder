@@ -31,10 +31,11 @@ html
                   span Bands
                   | Finder
           - if current_user
-            #user
-              - if current_user.avatar.attached?
-                .userpic style="background-image: url('#{url_for(current_user.avatar)}')"
-              p.username= current_user.name
+            = link_to profile_path(current_user) do
+              #user
+                - if current_user.avatar.attached?
+                  .userpic style="background-image: url('#{url_for(current_user.avatar)}')"
+                p.username= current_user.name
       #news-content.row
         aside.col-md-3
           nav
