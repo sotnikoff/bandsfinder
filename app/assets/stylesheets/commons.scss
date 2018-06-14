@@ -39,8 +39,9 @@ header {
   float: right;
 }
 .userpic {
+  background-repeat: no-repeat;
   border-radius: 23px;
-  background-size: contain;
+  background-size: cover;
   width: 45px;
   height: 45px;
   margin: 11px 7px 0 0;
