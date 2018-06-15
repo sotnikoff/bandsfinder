@@ -1,6 +1,6 @@
 class SearchController < ApplicationController
   def musicians
-    @query = Musician.includes(:musician_skills).ransack(params[:q])
+    @query = Musician.includes(:musician_skills).page(params[:page]).ransack(params[:q])
     @musicians = if params[:q]
                    @query.result(distinct: true)
                  else
