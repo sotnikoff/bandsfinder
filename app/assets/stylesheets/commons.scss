@@ -137,7 +137,7 @@ nav {
   }
 }
 
-.page-navbar {
+@mixin page-navbar {
   @include site-block;
   padding: 0 19px 0 19px;
   ul {
