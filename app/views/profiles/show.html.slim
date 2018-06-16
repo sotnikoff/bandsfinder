@@ -1,3 +1,56 @@
+#main-pane.pane
+  .pane-title
+    span.icon-ic-more.more-span
+  .pane-content
+    .col-md-3
+      img.photo alt="userpic" src=""
+    #info-wrapper.col-md-9
+      #data-profile
+        p.name Ангус Янг
+        p.login @angus
+        p.info-user Гитарист, 63 года, Австралия, Сидней
+      .row
+        #short-info
+          .col-md-6
+            p Краткая информация
+          .col-md-6
+            p
+              | Ангус развлекает публику, интенсивно прыгая и бегая взад-вперёд по сцене, не
+              | прекращая
+              | играть на гитаре. Во времена Бон Скотта в AC/DC, Ангус часто забирался к нему на
+              | плечи
+              | во время концертов, и они вместе пробирались через публику.
+      .row
+        #bands-skills
+          .col-md-6
+            .bands
+              p.title-par Коллективы
+              hr
+              .info-list
+                p
+                  | AC/DC
+                  span @acdc
+                p с 1973 года
+                p
+                  | AC/DC
+                  span @acdc
+                p с 1973 года
+                p
+                  | AC/DC
+                  span @acdc
+                p с 1973 года
+          .col-md-6
+            .skills
+              p.title-par Навыки
+              hr
+              .info-list
+                p Электрогитара
+                p 58 лет
+                p Вокал
+                p 58 лет
+
+
+
 h1= @user.email
 h3 Musician profile
 p= link_to 'Edit my profile', edit_user_registration_path
