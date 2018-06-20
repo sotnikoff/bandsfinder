@@ -11,9 +11,9 @@
         input#name.form-input name="name" placeholder="Иван" type="text" /
         label.form-label for="login"  Логин
         input#login.form-input name="login" placeholder="ivan" type="text" /
-        button data-target="#myModal" data-toggle="modal" role="button" class="form-submit"
+        button data-target="#confirm-modal" data-toggle="modal" role="button" class="form-submit"
           | Сохранить
-        #myModal.modal.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
+        #confirm-modal.modal.fade aria-hidden="true" aria-labelledby="confirm-modal-label" role="dialog" tabindex="-1"
           .modal-dialog role="document"
             .modal-content
               .modal-header
@@ -25,10 +25,8 @@
                 input#password.form-input name="password" placeholder="*****" type="password" form="personal-info-form" /
                 label.form-label for="password_confirm"  Подтвердить пароль
                 input#password_confirm.form-input name="password_confirm" placeholder="*****" type="password" form="personal-info-form" /
-                input.form-submit type="submit" form="personal-info-form" Сохранить /
-              .modal-footer
-                button.btn.btn-secondary data-dismiss="modal" type="button"  Close
-                button.btn.btn-primary type="button"  Save changes
+                input.form-submit type="submit" form="personal-info-form" value="Сохранить" /
+                button.form-submit data-dismiss="modal" type="button" Отмена
       .col-md-6.form-half
         label.form-label for="country"  Страна
         select#country.form-select name="country"
