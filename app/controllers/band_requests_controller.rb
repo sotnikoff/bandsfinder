@@ -2,11 +2,13 @@ class BandRequestsController < ApplicationController
   before_action :check_owner, only: %i[approve decline]
 
   def create
+    authorize(BandRequest)
     find_or_create_br
     redirect_to band_path(params[:band_id])
   end
 
   def approve
+    authorize(@band_request)
     ApproveBandRequest.call(@band_request)
     redirect_to band_path(@band_request.band.id)
   end
