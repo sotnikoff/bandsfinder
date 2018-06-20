@@ -8,14 +8,17 @@ class BandsController < ApplicationController
 
   def index
     @bands = Band.all
+    authorize @bands
   end
 
   def new
     @band = Band.new
+    authorize @band
   end
 
   def create
     band = Band.new(user_id: current_user.id)
+    authorize band
     if band.save
       redirect_to band_path(band)
     else

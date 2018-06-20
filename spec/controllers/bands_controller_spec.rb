@@ -30,6 +30,7 @@ RSpec.describe BandsController, type: :controller do
 
     describe 'GET #new' do
       it 'returns 200' do
+        Musician.create(user: @band.user)
         get :new
         expect(response).to be_successful
       end
