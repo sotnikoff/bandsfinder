@@ -1,4 +1,4 @@
-nav.page-navbar
+nav#search-navbar.page-navbar
   ul#news-menu
     li
       a href="#"  Тип поиска
@@ -14,26 +14,26 @@ nav.page-navbar
       a href="#"  Студии
     li
       a href="#"  Продюсеры
-#search-pane
-  .search-pane-title
+#search-pane.pane
+  .pane-title
     p Поиск
     span.icon-ic-more.more-span
   hr.pane-hr
-  .search-pane-content
+  .pane-content
     = search_form_for @query, url: search_musicians_path do |f|
       .col-md-6.form-half
-        label.search-label for='city'  Город
-        input#city.search-input name='city' placeholder='Москва' type='text' /
-        label.search-label for="experience"  Опыт
-        input#experience.search-input name="experience" placeholder='От 20 лет' type="text" /
-        = f.submit 'Поиск', class: 'search-submit'
+        label.form-label for='city'  Город
+        input#city.form-input name='city' placeholder='Москва' type='text' /
+        label.form-label for="experience"  Опыт
+        input#experience.form-input name="experience" placeholder='От 20 лет' type="text" /
+        = f.submit 'Поиск', class: 'form-submit'
       .col-md-6.form-half
-        label.search-label for="q_musician_skills_skill_id_eq"  Навык/специальность
+        label.form-label for="q_musician_skills_skill_id_eq"  Навык/специальность
         / input#skill.search-input name="skill" placeholder="Электрогитара" type="text" /
         = f.select :musician_skills_skill_id_eq,
                 options_from_collection_for_select(Skill.alphabetical, 'id', 'title', @query.musician_skills_skill_id_eq),
                 { include_blank: true }, { class: 'form-select' }
-#result-pane
+#result-pane.pane
   - @musicians.each do |musician|
     .result-note
       = link_to musician_path(musician)
@@ -46,7 +46,7 @@ nav.page-navbar
             | @angus
           - skills = (musician.musician_skills.map { |skill| skill.skill.title }).join(', ')
           p= "#{musician.user.city.region.country.title}, #{musician.user.city.region.title}, #{musician.user.city.title}, #{skills}"
-  = paginate @musicians
+  / = paginate @musicians
   / ul.result-pag
   /   li
   /     a.active href="#"  1
