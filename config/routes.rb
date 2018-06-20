@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'cities/index'
+  get 'regions/index'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   scope format: false do
@@ -31,6 +33,10 @@ Rails.application.routes.draw do
 
     root 'pages#index'
   end
+
+  get 'countries', to: 'countries#index', as: 'countries'
+  get 'regions/:country', to: 'regions#index', as: 'regions'
+  get 'cities/:region', to: 'cities#index', as: 'cities'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
