@@ -227,6 +227,9 @@ aside {
 .pane {
   @include site-block;
   overflow: auto;
+  &:last-of-type {
+    margin-bottom: 200px;
+  }
 }
 
 .pane-hr {
@@ -324,8 +327,6 @@ aside {
 .file-upload {
   height: 42px;
   border: solid 1px $logo_yellow;
-
-
   margin: 20px 0 20px 0;
   display: block;
   input[type="file"] {
