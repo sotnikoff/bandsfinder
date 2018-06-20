@@ -1,4 +1,6 @@
 class BandsController < ApplicationController
+  before_action :authenticate_user!
+
   def show
     @band = Band.find(params[:id])
     @has_request = check_requests
