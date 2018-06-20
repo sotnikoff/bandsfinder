@@ -12,6 +12,12 @@
   color: #4a4a4a;
 }
 
+#confirm-modal {
+  .form-submit {
+    margin-right: 30px;
+  }
+}
+
 .rules-upload {
   font-size: 14px;
   @include roboto-lightItalic;
