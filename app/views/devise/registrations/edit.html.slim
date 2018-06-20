@@ -1,20 +1,34 @@
+
 .pane
   .pane-title
     p Личная информация
     span.icon-ic-more.more-span
   hr.pane-hr
   .pane-content
-    form action="#" method="get"
+    form#personal-info-form action="#" method="get"
       .col-md-6.form-half
         label.form-label for="name"  Имя
         input#name.form-input name="name" placeholder="Иван" type="text" /
         label.form-label for="login"  Логин
         input#login.form-input name="login" placeholder="ivan" type="text" /
-        label.form-label for="password"  Пароль
-        input#password.form-input name="password" placeholder="*****" type="password" /
-        label.form-label for="password_confirm"  Пароль
-        input#password_confirm.form-input name="password_confirm" placeholder="*****" type="password" /
-        input.form-submit type="submit" value="Сохранить" /
+        button data-target="#myModal" data-toggle="modal" role="button" class="form-submit"
+          | Сохранить
+        #myModal.modal.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1"
+          .modal-dialog role="document"
+            .modal-content
+              .modal-header
+                button.close aria-label="Close" data-dismiss="modal" type="button"
+                  span aria-hidden="true"  ×
+                h4#myModalLabel.modal-title Подтверждение смены данных
+              .modal-body
+                label.form-label for="password"  Пароль
+                input#password.form-input name="password" placeholder="*****" type="password" form="personal-info-form" /
+                label.form-label for="password_confirm"  Подтвердить пароль
+                input#password_confirm.form-input name="password_confirm" placeholder="*****" type="password" form="personal-info-form" /
+                input.form-submit type="submit" form="personal-info-form" Сохранить /
+              .modal-footer
+                button.btn.btn-secondary data-dismiss="modal" type="button"  Close
+                button.btn.btn-primary type="button"  Save changes
       .col-md-6.form-half
         label.form-label for="country"  Страна
         select#country.form-select name="country"
@@ -64,3 +78,5 @@
           | congue venenatis. Curabitur id quam ut felis congue dignissim sed ac tellus. Orci varius
           | natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed nec lorem
           | volutpat, dictum ipsum id, pulvinar ligula.
+
+
