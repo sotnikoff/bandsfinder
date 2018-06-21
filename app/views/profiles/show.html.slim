@@ -1,14 +1,18 @@
 #main-pane.pane
   .pane-title
-    span.icon-ic-more.more-span
+    p Личная информация
+    hr.pane-hr
   .pane-content
     .col-md-3
-      img.photo alt="userpic" src=""
+      - if current_user.avatar.attached?
+        = image_tag current_user.avatar, class: 'photo', alt: current_user.name
+      - else
+        = image_tag 'default_user_0.jpg', class: 'photo', alt: current_user.name
     #info-wrapper.col-md-9
       #data-profile
-        p.name Ангус Янг
-        p.login @angus
-        p.info-user Австралия, Сидней
+        p.name= current_user.name
+        p.login= "@#{current_user.name.downcase}"
+        p.info-user= user_place
       .row
         #bands-skills
           .col-md-6
@@ -16,41 +20,30 @@
               p.title-par Вы состоите в группах
               hr
               .info-list
-                a
-                  p
-                  | AC/DC&nbsp;
-                  span @acdc
-                a
-                  p
-                  | AC/DC&nbsp;
-                  span @acdc
-                a
-                  p
-                  | AC/DC&nbsp;
-                  span @acdc
+                - current_user.bands.each do |band|
+                  = link_to band_path(band.id)
+                    p= band.id
+                    | &nbsp;
+                    span= "@#{band.id}"
           .col-md-6
             .skills
               p.title-par Персональные страницы
               hr
               .info-list
-                a href="#" Страница музыканта
-                br
-                a href="#" Страница звукорежиссера
+                = link_to 'Musician Page', musician_path(current_user.musician) if current_user.musician.present?
 
-
-
-h1= @user.email
-h3 Musician profile
-p= link_to 'Edit my profile', edit_user_registration_path
-- if @user.musician
-  ul
-    li= link_to 'show page', musician_path(current_user.musician.id)
-    li= link_to 'delete page', musicians_path, method: :delete
-- else
-  = form_tag(musicians_path) do
-    = submit_tag 'create'
-h3 Group owner
-ul
-  - @user.bands.all.each do |band|
-    li= link_to band.id, band_path(band.id)
-=link_to 'create a band', new_band_path
+/ h1= @user.email
+/ h3 Musician profile
+/ p= link_to 'Edit my profile', edit_user_registration_path
+/ - if @user.musician
+/   ul
+/     li= link_to 'show page', musician_path(current_user.musician.id)
+/     li= link_to 'delete page', musicians_path, method: :delete
+/ - else
+/   = form_tag(musicians_path) do
+/     = submit_tag 'create'
+/ h3 Group owner
+/ ul
+/   - @user.bands.all.each do |band|
+/     li= link_to band.id, band_path(band.id)
+/ =link_to 'create a band', new_band_path

@@ -36,17 +36,20 @@ html
                 #user
                   - if current_user.avatar.attached?
                     .userpic style="background-image: url('#{url_for(current_user.avatar)}')"
+                  - else
+                    .userpic style="background-image: url('#{asset_url('default_user_0.jpg')}')"
                   p.username= current_user.name
           ul#user-menu.dropdown-menu.dropdown-menu-right aria-labelledby="user-wrapper" role="menu"
             li role="presentation"
-              a href="#" role="menuitem" tabindex="-1"  Профиль
+              = link_to 'Profile', profile_path(current_user.id), role: 'menuitem', tabindex: '-1'
+            - if current_user.musician.present?
+              li role="presentation"
+                = link_to 'Musician page', musician_path(current_user.musician.id), role: 'menuitem', tabindex: '-1'
             li role="presentation"
-              a href="#" role="menuitem" tabindex="-1"  Страница музыканта
-            li role="presentation"
-              a href="#" role="menuitem" tabindex="-1"  Что-то еще
+              = link_to 'Edit profile', edit_user_registration_path, role: 'menuitem', tabindex: '-1'
             li.divider role="presentation"
             li role="presentation"
-              a href="#" role="menuitem" tabindex="-1"  Выйти
+              = link_to 'Log out', destroy_user_session_path, role: 'menuitem', tabindex: '-1', method: :delete
       #news-content.row
         aside.col-md-3
           nav

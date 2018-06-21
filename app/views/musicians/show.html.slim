@@ -3,12 +3,15 @@
     span.icon-ic-more.more-span
   .pane-content
     .col-md-3
-      img.photo alt="userpic" src=""
+      - if current_user.avatar.attached?
+        = image_tag current_user.avatar, class: 'photo', alt: current_user.name
+      - else
+        = image_tag 'default_user_0.jpg', class: 'photo', alt: current_user.name
     #info-wrapper.col-md-9
       #data-profile
-        p.name Ангус Янг
-        p.login @angus
-        p.info-user Гитарист, 63 года, Австралия, Сидней
+        p.name= current_user.name
+        p.login= "@#{current_user.name.downcase}"
+        p.info-user= user_place
       .row
         #short-info
           .col-md-6
@@ -27,31 +30,31 @@
               p.title-par Коллективы
               hr
               .info-list
-                p
-                  | AC/DC
-                  span @acdc
-                p с 1973 года
-                p
-                  | AC/DC
-                  span @acdc
-                p с 1973 года
-                p
-                  | AC/DC
-                  span @acdc
-                p с 1973 года
+                - current_user.bands.each do |band|
+                  = link_to band_path(band.id) do
+                    p
+                      = band.id
+                      span= '@Владелец'
+                    p с 1973 года
+                - current_user.musician.bands.each do |band|
+                  = link_to band_path(band.id) do
+                    p
+                      = band.id
+                      span= '@Участник'
+                    p с 1973 года
           .col-md-6
             .skills
               p.title-par Навыки
               hr
               .info-list
-                p Электрогитара
-                p 58 лет
-                p Вокал
-                p 58 лет
+                - @musician.musician_skills.each do |musician_skill|
+                  p= musician_skill.skill.title
+                  p= musician_skill.comment
 
 
-h1 Skills
-ul
-- @musician.musician_skills.each do |musician_skill|
-  li= "#{musician_skill.skill.title} (#{musician_skill.comment})"
-= link_to 'edit profile', edit_musician_path(@musician.id) if policy(@musician).update?
+
+/ h1 Skills
+/ ul
+/ - @musician.musician_skills.each do |musician_skill|
+/   li= "#{musician_skill.skill.title} (#{musician_skill.comment})"
+/ = link_to 'edit profile', edit_musician_path(@musician.id) if policy(@musician).update?

@@ -4,11 +4,11 @@
     span.icon-ic-more.more-span
   hr.pane-hr
   .pane-content
-    form#personal-info-form action="#" method="post"
+    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, id: 'personal-info-form' }) do |f|
       .col-md-6.form-half
-        label.form-label for="name"  Имя
-        input#name.form-input name="name" placeholder="Иван" type="text" /
-        button data-target="#confirm-modal" data-toggle="modal" role="button" class="form-submit"
+        = f.label :name, class: 'form-label'
+        = f.text_field :name, class: 'form-input', id: 'name'
+        button data-target="#confirm-modal" data-toggle="modal" role="button" class="form-submit" type="button"
           | Сохранить
         #confirm-modal.modal.fade aria-hidden="true" aria-labelledby="confirm-modal-label" role="dialog" tabindex="-1"
           .modal-dialog role="document"
@@ -18,9 +18,9 @@
                   span aria-hidden="true"  ×
                 h4#myModalLabel.modal-title Подтверждение смены данных
               .modal-body
-                label.form-label for="password"  Пароль
-                input#password.form-input name="password" placeholder="*****" type="password" form="personal-info-form" /
-                input.form-submit type="submit" form="personal-info-form" value="Сохранить" /
+                = f.label :current_password, class: 'form-label'
+                = f.password_field :current_password, class: 'form-input'
+                = f.submit 'Save', class: 'form-submit'
                 button.form-submit data-dismiss="modal" type="button" Отмена
       .col-md-6.form-half
         label.form-label for="country"  Страна
@@ -36,13 +36,29 @@
   hr.pane-hr
   .pane-content
     .col-md-3.narrow-part
-      img.photo alt="userpic" src="" /
-      form enctype="multipart/form-data" method="post"
+      - if current_user.avatar.attached?
+        = image_tag current_user.avatar, class: 'photo', alt: current_user.name
+      - else
+        = image_tag 'default_user_0.jpg', class: 'photo', alt: current_user.name
+      = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, id: 'personal-info-form-pic' }) do |f|
         .file-upload
           label
-            input name="file" type="file" /
+            = f.file_field :avatar
             p Загрузить файл
-        input.form-submit type="submit" value="Сохранить" /
+        button data-target="#confirm-modal-picture" data-toggle="modal" role="button" class="form-submit" type="button"
+          | Сохранить
+        #confirm-modal-picture.modal.fade aria-hidden="true" aria-labelledby="confirm-modal-label" role="dialog" tabindex="-1"
+          .modal-dialog role="document"
+            .modal-content
+              .modal-header
+                button.close aria-label="Close" data-dismiss="modal" type="button"
+                  span aria-hidden="true"  ×
+                h4#myModalLabelPicture.modal-title Подтверждение смены данных
+              .modal-body
+                = f.label :current_password, class: 'form-label', for: 'current-password-pic'
+                = f.password_field :current_password, class: 'form-input', id: 'current-password-pic'
+                = f.submit 'Save', class: 'form-submit'
+                button.form-submit data-dismiss="modal" type="button" Отмена
     .col-md-9.wide-part
       p.title-par Правила загрузки изображений
       p.rules-upload
@@ -59,9 +75,12 @@
   .pane-content
     .col-md-3.narrow-part
       p.title-par Страница музыканта
-      button.form-submit Уже создана
+      - if current_user.musician.present?
+        = button_tag 'Уже создана', class: 'form-submit'
+      - else
+        =  button_to 'Create', musicians_path, class: 'yellow-btn'
       p.title-par Страница группы
-      button.yellow-btn Создать
+      = link_to 'Create', new_band_path, class: 'yellow-btn'
     .col-md-9.wide-part
       p.title-par Информация о профильных страницах
       p.rules-upload
@@ -76,12 +95,12 @@
     span.icon-ic-more.more-span
   hr.pane-hr
   .pane-content
-    form action="#" method="post"
+    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
       .col-md-6.form-half
-        label.form-label for="change-password"  Текущий пароль
-        input#change-password.form-input name="password" placeholder="*****" type="password" /
-        label.form-label for="password-confirm"  Подтверждение пароля
-        input#password-confirm.form-input name="password-confirm" placeholder="*****" type="password" /
-        label.form-label for="change-password"  Поменять пароль
-        input#new-password.form-input name="new-password" placeholder="*****" type="password" /
-        input.form-submit type="submit" value=("Поменять пароль") /
+        = f.label :current_password, class: 'form-label', for: 'change-password'
+        = f.password_field :current_password, class: 'form-input', id: 'change-password'
+        = f.label :password, class: 'form-label', for: 'new-password'
+        = f.password_field :password, class: 'form-input', id: 'new-password'
+        = f.label :password_confirmation, class: 'form-label', for: 'password-confirm'
+        = f.password_field :password_confirmation, class: 'form-input', id: 'password-confirm'
+        = f.submit 'Change', class: 'form-submit'
