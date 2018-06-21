@@ -1,4 +1,22 @@
-h1 New group
-= form_for(@band) do |f|
-  p
-    = f.submit 'Create'
+#create-group.pane
+  .pane-title
+    p Создать группу
+    span.icon-ic-more.more-span
+  hr.pane-hr
+  .pane-content
+    = form_for(@band) do |f|
+      .col-md-6.form-half
+        label.form-label for="name"  Название
+        input#name.form-input name="name" placeholder="Название группы" type="text" /
+        label.form-label for="description"  Описание
+        textarea#description.form-input name="description" rows="10"
+        = f.submit 'Создать', class:'form-submit'
+      .col-md-6.form-half
+        label.form-label for="genre" Жанр
+        input#genre.form-input name="name" placeholder="Жанр" type="text" /
+        label.form-label Логотип
+        .img
+        .file-upload
+          label
+            input name="file" type="file" /
+            p Загрузить логотип
