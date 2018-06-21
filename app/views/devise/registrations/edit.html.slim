@@ -1,16 +1,13 @@
-
 .pane
   .pane-title
     p Личная информация
     span.icon-ic-more.more-span
   hr.pane-hr
   .pane-content
-    form#personal-info-form action="#" method="get"
+    form#personal-info-form action="#" method="post"
       .col-md-6.form-half
         label.form-label for="name"  Имя
         input#name.form-input name="name" placeholder="Иван" type="text" /
-        label.form-label for="login"  Логин
-        input#login.form-input name="login" placeholder="ivan" type="text" /
         button data-target="#confirm-modal" data-toggle="modal" role="button" class="form-submit"
           | Сохранить
         #confirm-modal.modal.fade aria-hidden="true" aria-labelledby="confirm-modal-label" role="dialog" tabindex="-1"
@@ -23,8 +20,6 @@
               .modal-body
                 label.form-label for="password"  Пароль
                 input#password.form-input name="password" placeholder="*****" type="password" form="personal-info-form" /
-                label.form-label for="password_confirm"  Подтвердить пароль
-                input#password_confirm.form-input name="password_confirm" placeholder="*****" type="password" form="personal-info-form" /
                 input.form-submit type="submit" form="personal-info-form" value="Сохранить" /
                 button.form-submit data-dismiss="modal" type="button" Отмена
       .col-md-6.form-half
@@ -62,19 +57,31 @@
     span.icon-ic-more.more-span
   hr.pane-hr
   .pane-content
-    form action="#" method="get"
-      .col-md-3.narrow-part
-        p.title-par Страница музыканта
-        button.form-submit Уже создана
-        p.title-par Страница группы
-        button.yellow-btn Создать
-      .col-md-9.wide-part
-        p.title-par Информация о профильных страницах
-        p.rules-upload
-          | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget consectetur arcu,
-          | sit amet interdum ligula. Curabitur semper imperdiet scelerisque. Duis eleifend mi eget
-          | congue venenatis. Curabitur id quam ut felis congue dignissim sed ac tellus. Orci varius
-          | natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed nec lorem
-          | volutpat, dictum ipsum id, pulvinar ligula.
-
-
+    .col-md-3.narrow-part
+      p.title-par Страница музыканта
+      button.form-submit Уже создана
+      p.title-par Страница группы
+      button.yellow-btn Создать
+    .col-md-9.wide-part
+      p.title-par Информация о профильных страницах
+      p.rules-upload
+        | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget consectetur arcu,
+        | sit amet interdum ligula. Curabitur semper imperdiet scelerisque. Duis eleifend mi eget
+        | congue venenatis. Curabitur id quam ut felis congue dignissim sed ac tellus. Orci varius
+        | natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed nec lorem
+        | volutpat, dictum ipsum id, pulvinar ligula.
+.pane
+  .pane-title
+    p Смена пароля
+    span.icon-ic-more.more-span
+  hr.pane-hr
+  .pane-content
+    form action="#" method="post"
+      .col-md-6.form-half
+        label.form-label for="change-password"  Текущий пароль
+        input#change-password.form-input name="password" placeholder="*****" type="password" /
+        label.form-label for="password-confirm"  Подтверждение пароля
+        input#password-confirm.form-input name="password-confirm" placeholder="*****" type="password" /
+        label.form-label for="change-password"  Поменять пароль
+        input#new-password.form-input name="new-password" placeholder="*****" type="password" /
+        input.form-submit type="submit" value=("Поменять пароль") /
