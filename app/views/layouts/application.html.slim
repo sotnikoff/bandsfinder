@@ -31,11 +31,22 @@ html
                   span Bands
                   | Finder
           - if current_user
-            = link_to profile_path(current_user) do
-              #user
-                - if current_user.avatar.attached?
-                  .userpic style="background-image: url('#{url_for(current_user.avatar)}')"
-                p.username= current_user.name
+            .dropdown-toggle type="button" id="user-wrapper" data-toggle="dropdown"
+              = link_to profile_path(current_user) do
+                #user
+                  - if current_user.avatar.attached?
+                    .userpic style="background-image: url('#{url_for(current_user.avatar)}')"
+                  p.username= current_user.name
+          ul#user-menu.dropdown-menu.dropdown-menu-right aria-labelledby="user-wrapper" role="menu"
+            li role="presentation"
+              a href="#" role="menuitem" tabindex="-1"  Профиль
+            li role="presentation"
+              a href="#" role="menuitem" tabindex="-1"  Страница музыканта
+            li role="presentation"
+              a href="#" role="menuitem" tabindex="-1"  Что-то еще
+            li.divider role="presentation"
+            li role="presentation"
+              a href="#" role="menuitem" tabindex="-1"  Выйти
       #news-content.row
         aside.col-md-3
           nav
@@ -65,4 +76,4 @@ html
               li
                 a href="#"  Разработчикам
         main.col-md-9
-          =yield
+          = yield
