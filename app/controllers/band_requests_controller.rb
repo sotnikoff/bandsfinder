@@ -1,4 +1,5 @@
 class BandRequestsController < ApplicationController
+  before_action :authenticate_user!
   before_action :check_owner, only: %i[approve decline]
 
   def create

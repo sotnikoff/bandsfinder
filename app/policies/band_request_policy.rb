@@ -3,8 +3,8 @@ class BandRequestPolicy < ApplicationPolicy
     true if user.present? && user.musician.present?
   end
 
-  def approve
-    false if user.present? && band_request.musician.user == user
+  def approve?
+    # false if user.present? && band_request.musician.user == user
     false
   end
 
