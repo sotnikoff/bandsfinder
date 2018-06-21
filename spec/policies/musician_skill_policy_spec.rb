@@ -1,27 +1,32 @@
 require 'rails_helper'
 
 RSpec.describe MusicianSkillPolicy do
-  let(:user) { User.new }
+  let(:user) { build :user }
+  let(:musician_skill) { build :musician_skill }
 
   subject { described_class }
 
-  permissions '.scope' do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :show? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
   permissions :create? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
+    it 'grants permissions if user has musician account' do
+      new_musician_skill = musician_skill
+      expect(subject).to permit(new_musician_skill.musician.user, new_musician_skill)
+    end
 
-  permissions :update? do
-    pending "add some examples to (or delete) #{__FILE__}"
+    it 'fails if user creates musician skill for another musician id' do
+      new_musician_skill = musician_skill
+      expect(subject).not_to permit(user, new_musician_skill)
+    end
   end
 
   permissions :destroy? do
-    pending "add some examples to (or delete) #{__FILE__}"
+    it 'grants permissions if user deletes own musician skill' do
+      new_musician_skill = musician_skill
+      expect(subject).to permit(new_musician_skill.musician.user, new_musician_skill)
+    end
+
+    it 'fails if user deletes musician skill for another musician id' do
+      new_musician_skill = musician_skill
+      expect(subject).not_to permit(user, new_musician_skill)
+    end
   end
 end
