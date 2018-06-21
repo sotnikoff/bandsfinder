@@ -298,6 +298,10 @@ aside {
   margin-top: 20px;
   background: transparent;
   color: $logo_yellow;
+  &:hover {
+    background-color: $logo_yellow;
+    color: #fff;
+  }
 }
 
 .yellow-btn {
@@ -338,6 +342,12 @@ aside {
     cursor: pointer;
     width: 100%;
     font-weight: normal;
+    &:hover {
+      background-color: $logo_yellow;
+      p {
+        color: #fff;
+      }
+    }
   }
   p {
     margin-top: -32px !important;
