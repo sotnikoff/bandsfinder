@@ -18,7 +18,7 @@ class BandsController < ApplicationController
   end
 
   def create
-    band = Band.new(user_id: current_user.id)
+    band = Band.new(band_params.merge(user_id: current_user.id))
     authorize band
     if band.save
       redirect_to band_path(band)
