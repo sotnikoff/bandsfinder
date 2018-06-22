@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe BandsController, type: :controller do
   let(:band) { create :band }
   let(:genre) { create :genre }
+
   context 'auth needed' do
     before(:each) do
       @band = create :band
@@ -39,18 +40,20 @@ RSpec.describe BandsController, type: :controller do
     end
   end
 
-  describe 'POST #create' do
-    it 'returns :found' do
-      musician = create :musician
-      sign_in musician.user
-      post :create, params: {
-        band: {
-          title: 'AC/DC',
-          description: 'Epic band!',
-          genre_id: genre.id
+  context 'auth does not needed' do
+    describe 'POST #create' do
+      it 'returns :found' do
+        musician = create :musician
+        sign_in musician.user
+        post :create, params: {
+          band: {
+            title: 'AC/DC',
+            description: 'Epic band!',
+            genre_id: genre.id
+          }
         }
-      }
-      expect(response).to have_http_status(:found)
+        expect(response).to have_http_status(:found)
+      end
     end
   end
 end
