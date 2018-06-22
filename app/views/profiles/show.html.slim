@@ -6,14 +6,15 @@
   .pane-content
     .col-md-3
       - if current_user.avatar.attached?
-        = image_tag current_user.avatar, class: 'photo', alt: current_user.name
+        = image_tag(current_user.avatar.variant(combine_options: { resize: '500',
+                gravity: 'center', extent: '500x500' }), class: 'photo', alt: current_user.name)
       - else
         = image_tag 'default_user_0.jpg', class: 'photo', alt: current_user.name
     #info-wrapper.col-md-9
       #data-profile
         p.name= current_user.name
         p.login= "@#{current_user.name.downcase}"
-        p.info-user= user_place
+        p.info-user= user_place(current_user)
       .row
         #bands-skills
           .col-md-6

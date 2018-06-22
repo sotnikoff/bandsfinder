@@ -1,6 +1,6 @@
 module ApplicationHelper
-  def user_place
-    "#{current_user.city.region.country.title}, "\
-    "#{current_user.city.region.title}, #{current_user.city.title}"
+  def user_place(user)
+    "#{user.city.region.country.title}, "\
+    "#{user.city.region.title}, #{user.city.title}"
   end
 end
