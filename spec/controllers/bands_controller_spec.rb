@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe BandsController, type: :controller do
   let(:band) { create :band }
+  let(:genre) { create :genre }
 
   describe 'GET #index' do
     it 'returns 200' do
@@ -35,7 +36,13 @@ RSpec.describe BandsController, type: :controller do
     it 'returns :found' do
       musician = create :musician
       sign_in musician.user
-      post :create
+      post :create, params: {
+        band: {
+          title: 'AC/DC',
+          description: 'Epic band!',
+          genre_id: genre.id
+        }
+      }
       expect(response).to have_http_status(:found)
     end
   end
