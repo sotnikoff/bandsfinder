@@ -1,0 +1,15 @@
+#container.parent-center-page-block
+  #login-pane.pane.col-md-3.center-page-block
+    .pane-title
+      p Sign in
+    hr.pane-hr
+    .pane-content
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .col-md-8.form-half
+          = f.label :email, class: 'form-label'
+          = f.email_field :email, autofocus: true, autocomplete: 'email', class: 'form-input', placeholder: 'Email'
+          = f.label :password, class: 'form-label'
+          = f.password_field :password, autocomplete: 'off', class: 'form-input', placeholder: 'Password'
+          /= f.checkbox 'Запомнить меня'
+          .form-group
+            = f.submit 'Log in', class: 'form-submit'

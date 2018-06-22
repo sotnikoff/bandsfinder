@@ -35,6 +35,14 @@ Metrics/BlockLength:
     - spec/**/*.rb
     - app/admin/**/*.rb
 
+Metrix/MethodLength:
+  Exclude:
+    - app/controllers/users/**/*.rb
+
+Metrics/AbcSize:
+  Exclude:
+    - app/controllers/users/**/*.rb
+
 Metrics/ClassLength:
   Max: 210
 

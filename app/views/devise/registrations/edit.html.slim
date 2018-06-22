@@ -1,0 +1,66 @@
+.pane
+  .pane-title
+    p Личная информация
+    span.icon-ic-more.more-span
+  hr.pane-hr
+  .pane-content
+    form action="#" method="get"
+      .col-md-6.form-half
+        label.form-label for="name"  Имя
+        input#name.form-input name="name" placeholder="Иван" type="text" /
+        label.form-label for="login"  Логин
+        input#login.form-input name="login" placeholder="ivan" type="text" /
+        label.form-label for="password"  Пароль
+        input#password.form-input name="password" placeholder="*****" type="password" /
+        label.form-label for="password_confirm"  Пароль
+        input#password_confirm.form-input name="password_confirm" placeholder="*****" type="password" /
+        input.form-submit type="submit" value="Сохранить" /
+      .col-md-6.form-half
+        label.form-label for="country"  Страна
+        select#country.form-select name="country"
+        label.form-label for="region"  Регион
+        select#region.form-select name="region"
+        label.form-label for="city"  Город
+        select#city.form-select name="city"
+.pane
+  .pane-title
+    p Фотография профиля
+    span.icon-ic-more.more-span
+  hr.pane-hr
+  .pane-content
+    .col-md-3.narrow-part
+      img.photo alt="userpic" src="" /
+      form enctype="multipart/form-data" method="post"
+        .file-upload
+          label
+            input name="file" type="file" /
+            p Загрузить файл
+        input.form-submit type="submit" value="Сохранить" /
+    .col-md-9.wide-part
+      p.title-par Правила загрузки изображений
+      p.rules-upload
+        | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget consectetur arcu, sit
+        | amet interdum ligula. Curabitur semper imperdiet scelerisque. Duis eleifend mi eget congue
+        | venenatis. Curabitur id quam ut felis congue dignissim sed ac tellus. Orci varius natoque
+        | penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed nec lorem volutpat,
+        | dictum ipsum id, pulvinar ligula.
+#pages-info.pane
+  .pane-title
+    p Профильные страницы
+    span.icon-ic-more.more-span
+  hr.pane-hr
+  .pane-content
+    form action="#" method="get"
+      .col-md-3.narrow-part
+        p.title-par Страница музыканта
+        button.form-submit Уже создана
+        p.title-par Страница группы
+        button.yellow-btn Создать
+      .col-md-9.wide-part
+        p.title-par Информация о профильных страницах
+        p.rules-upload
+          | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget consectetur arcu,
+          | sit amet interdum ligula. Curabitur semper imperdiet scelerisque. Duis eleifend mi eget
+          | congue venenatis. Curabitur id quam ut felis congue dignissim sed ac tellus. Orci varius
+          | natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed nec lorem
+          | volutpat, dictum ipsum id, pulvinar ligula.

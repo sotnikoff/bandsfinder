@@ -1,7 +1,9 @@
 class MusiciansController < ApplicationController
   before_action :find_musician, only: %i[show edit]
 
-  def show; end
+  def show
+    authorize @musician
+  end
 
   def create
     musician = Musician.find_or_create_by(user_id: current_user.id)
@@ -10,7 +12,9 @@ class MusiciansController < ApplicationController
 
   def update; end
 
-  def edit; end
+  def edit
+    authorize @musician
+  end
 
   def destroy
     musician = Musician.where(user_id: current_user.id).first

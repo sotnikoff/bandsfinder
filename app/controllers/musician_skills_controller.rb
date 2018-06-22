@@ -1,11 +1,21 @@
 class MusicianSkillsController < ApplicationController
+  before_action :authenticate_user!
+
   def create
-    MusicianSkill.create(permit_params)
-    redirect_to edit_musician_path(permit_params[:musician_id])
+    musician_skill = MusicianSkill.new(permit_params)
+    authorize musician_skill
+    notice = if musician_skill.save
+               'Success'
+             else
+               'Failed'
+             end
+    redirect_to edit_musician_path(params[:musician_id]), notice: notice
   end
 
   def destroy
-    MusicianSkill.destroy(params[:id])
+    musician_skill = MusicianSkill.find(params[:id])
+    authorize musician_skill
+    musician_skill.destroy
     redirect_to edit_musician_path(params[:musician_id])
   end
 

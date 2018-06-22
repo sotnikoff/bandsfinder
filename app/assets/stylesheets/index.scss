@@ -3,77 +3,106 @@
   background-size: cover;
 }
 #content {
-  margin-top: 10rem;
+  margin-top: 17rem;
 }
+
 .center-text {
   text-align: center;
 }
+
 #content {
   background: transparent;
 }
+
 .logo_index {
   text-align: center;
   font-size: 6.4rem;
-  font-family: Roboto-Bold, sans-serif;
+  @include roboto-bold;
   color: #ffffff;
+  span {
+    @include yellow-font;
+  }
 }
-.logo_index span {
-  color: #f5a623;
-}
+
+
 .info {
   text-align: center;
   color: rgba(255, 255, 255, 0.43);
-  font-family: Roboto-Light, sans-serif;
+  @include roboto-light;
 }
+
 .info-header {
   font-size: 2.4rem;
 }
+
 .info-text {
   margin-top: 11rem;
   font-size: 1.8rem;
 }
+
 .login-form {
   width: 30%;
   margin: 7.2rem auto 0;
 }
+
 .login-form-text {
   text-align: center;
   font-size: 1.8rem;
-  font-family: Roboto-Regular, sans-serif;
+  @include roboto-regular;
   color: #cdcdcd;
 }
-.login-form-control {
+
+@mixin login-form-control {
   display: block;
   border-radius: 12px;
   outline-style: none;
   background-color: transparent;
   margin: 2.6rem auto 0;
+  padding: 13px 33px 13px 33px;
 }
+
 .login-form-input {
-  display: block;
-  border-radius: 12px;
-  outline-style: none;
-  background-color: transparent;
-  margin: 2.6rem auto 0;
+  @include login-form-control;
   height: 50px;
   border: solid 1px #979797;
   padding: 18px;
   width: 100%;
 }
+
 .login-form-input[placeholder] {
-  font-family: Roboto-LightItalic, sans-serif;
+  @include roboto-lightItalic;
   color: rgba(255, 255, 255, 0.43);
   font-size: 1.4rem;
 }
+
 .login-form-submit {
-  color: #f5a623;
-  display: block;
+  @include yellow-font;
+  @include login-form-control;
+  @include roboto-light;
+
+  border: solid 1px $logo_yellow;
+  font-size: 1.4rem;
+}
+
+#btn-auth-wrapper {
+  text-align: center;
+  margin: 90px 0 0 0;
+}
+
+.redirect-auth-btn{
+  @include yellow-font;
+  @include roboto-light;
+  padding: 13px 33px 13px 33px;
+  border: solid 1px $logo_yellow;
+  font-size: 1.4rem;
   border-radius: 12px;
   outline-style: none;
   background-color: transparent;
-  margin: 2.6rem auto 0;
-  font-family: Roboto-Light, sans-serif;
-  padding: 13px 33px 13px 33px;
-  border: solid 1px #f5a623;
-  font-size: 1.4rem;
+  &:hover {
+    text-decoration: none;
+    @include yellow-font;
+  }
+  &:nth-of-type(2) {
+    margin-left: 40px;
+  }
 }
