@@ -1,10 +1,10 @@
 class BandPolicy < ApplicationPolicy
   def index?
-    true
+    true if user.present?
   end
 
   def show?
-    true
+    true if user.present?
   end
 
   def new?

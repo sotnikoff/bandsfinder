@@ -1,27 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe SearchPolicy do
-  let(:user) { User.new }
-
+  let(:user) { build :user }
+  let(:musician) { create :musician }
   subject { described_class }
 
-  permissions '.scope' do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
+  permissions :musicians? do
+    it 'succeeds if user has been presented' do
+      musician
+      musicians = Musician.all
+      expect(subject).to permit(user, musicians)
+    end
 
-  permissions :show? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :create? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :update? do
-    pending "add some examples to (or delete) #{__FILE__}"
-  end
-
-  permissions :destroy? do
-    pending "add some examples to (or delete) #{__FILE__}"
+    it 'fails if user has not been presented' do
+      musician
+      musicians = Musician.all
+      expect(subject).not_to permit(nil, musicians)
+    end
   end
 end

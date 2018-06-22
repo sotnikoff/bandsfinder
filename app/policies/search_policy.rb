@@ -1,5 +1,5 @@
 class SearchPolicy < ApplicationPolicy
   def musicians?
-    true
+    true if user.present?
   end
 end
