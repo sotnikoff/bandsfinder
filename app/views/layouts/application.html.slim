@@ -52,31 +52,30 @@ html
               = link_to 'Log out', destroy_user_session_path, role: 'menuitem', tabindex: '-1', method: :delete
       #news-content.row
         aside.col-md-3
-          nav
-            ul
-              li
-                = link_to 'Search musician', search_musicians_path
-              li
-                = link_to 'My profile', profile_path(current_user)
-              li
-                a href="#"  Мои новости
-              li
-                a href="#"  Мои коллективы
-              li
-                a href="#"  Сообщения
-              li
-                a href="#"  Предложения
-              li
-                a href="#"  Избранное
-              li
-                a href="#"  Авторы текстов
-              li
-                a href="#"  Продюсеры и центры
-              li
-                = link_to 'Settings', edit_user_registration_path
-              li
-                a href="#"  Помощь
-              li
-                a href="#"  Разработчикам
+          = link_to 'Search musician', search_musicians_path
+          ul.dark-menu
+            li
+              = link_to 'My profile', profile_path(current_user)
+            li
+              a href="#"  Мои новости
+            li
+              a href="#"  Мои коллективы
+            li
+              a href="#"  Сообщения
+            li
+              a href="#"  Предложения
+            li
+              a href="#"  Избранное
+            li
+              a href="#"  Авторы текстов
+            li
+              a href="#"  Продюсеры и центры
+          ul.light-menu
+            li
+              = link_to 'Settings', edit_user_registration_path
+            li
+              a href="#"  Помощь
+            li
+              a href="#"  Разработчикам
         main.col-md-9
           = yield
