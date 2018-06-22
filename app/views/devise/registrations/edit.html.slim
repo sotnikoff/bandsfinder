@@ -10,7 +10,7 @@
         = f.text_field :name, class: 'form-input', id: 'name'
         button data-target="#confirm-modal" data-toggle="modal" role="button" class="form-submit" type="button"
           | Сохранить
-        #confirm-modal.modal.fade aria-hidden="true" aria-labelledby="confirm-modal-label" role="dialog" tabindex="-1"
+        #confirm-modal.confirm-pass.modal.fade aria-hidden="true" aria-labelledby="confirm-modal-label" role="dialog" tabindex="-1"
           .modal-dialog role="document"
             .modal-content
               .modal-header
@@ -19,7 +19,7 @@
                 h4#myModalLabel.modal-title Подтверждение смены данных
               .modal-body
                 = f.label :current_password, class: 'form-label'
-                = f.password_field :current_password, class: 'form-input'
+                = f.password_field :current_password, class: 'form-input', placeholder: '******'
                 = f.submit 'Save', class: 'form-submit'
                 button.form-submit data-dismiss="modal" type="button" Отмена
       .col-md-6.form-half
@@ -47,7 +47,7 @@
             p Загрузить файл
         button data-target="#confirm-modal-picture" data-toggle="modal" role="button" class="form-submit" type="button"
           | Сохранить
-        #confirm-modal-picture.modal.fade aria-hidden="true" aria-labelledby="confirm-modal-label" role="dialog" tabindex="-1"
+        #confirm-modal-picture.confirm-pass.modal.fade aria-hidden="true" aria-labelledby="confirm-modal-label" role="dialog" tabindex="-1"
           .modal-dialog role="document"
             .modal-content
               .modal-header
@@ -56,7 +56,7 @@
                 h4#myModalLabelPicture.modal-title Подтверждение смены данных
               .modal-body
                 = f.label :current_password, class: 'form-label', for: 'current-password-pic'
-                = f.password_field :current_password, class: 'form-input', id: 'current-password-pic'
+                = f.password_field :current_password, class: 'form-input', id: 'current-password-pic', placeholder: '******'
                 = f.submit 'Save', class: 'form-submit'
                 button.form-submit data-dismiss="modal" type="button" Отмена
     .col-md-9.wide-part
@@ -76,11 +76,11 @@
     .col-md-3.narrow-part
       p.title-par Страница музыканта
       - if current_user.musician.present?
-        = button_tag 'Уже создана', class: 'form-submit'
+        = button_tag 'Уже создана', class: 'form-submit disabled-btn', disabled: true
       - else
-        =  button_to 'Create', musicians_path, class: 'yellow-btn'
+        =  button_to 'Create', musicians_path, class: 'form-submit'
       p.title-par Страница группы
-      = link_to 'Create', new_band_path, class: 'yellow-btn'
+      = link_to 'Create', new_band_path, class: 'form-submit-link'
     .col-md-9.wide-part
       p.title-par Информация о профильных страницах
       p.rules-upload
@@ -98,9 +98,9 @@
     = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
       .col-md-6.form-half
         = f.label :current_password, class: 'form-label', for: 'change-password'
-        = f.password_field :current_password, class: 'form-input', id: 'change-password'
+        = f.password_field :current_password, class: 'form-input', id: 'change-password', placeholder: '******'
         = f.label :password, class: 'form-label', for: 'new-password'
-        = f.password_field :password, class: 'form-input', id: 'new-password'
+        = f.password_field :password, class: 'form-input', id: 'new-password', placeholder: '******'
         = f.label :password_confirmation, class: 'form-label', for: 'password-confirm'
-        = f.password_field :password_confirmation, class: 'form-input', id: 'password-confirm'
+        = f.password_field :password_confirmation, class: 'form-input', id: 'password-confirm', placeholder: '******'
         = f.submit 'Change', class: 'form-submit'
