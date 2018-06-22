@@ -1,8 +1,8 @@
 #main-pane.pane
   .pane-title
     p Личная информация
-    span= image_tag('more.svg')
-    hr.pane-hr
+    span.more-span= image_tag('more.svg')
+  hr.pane-hr
   .pane-content
     .col-md-3
       - if current_user.avatar.attached?
@@ -26,6 +26,7 @@
                     p= band.id
                     | &nbsp;
                     span= "@#{band.id}"
+            = link_to 'Create new group', new_band_path, class: 'form-submit-link'
           .col-md-6
             .skills
               p.title-par Персональные страницы
