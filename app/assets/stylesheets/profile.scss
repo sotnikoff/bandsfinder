@@ -3,7 +3,10 @@ main {
 }
 
 #main-pane {
-  padding-bottom: 245px;
+  padding-bottom: 60px;
+  .pane-content {
+    padding-top: 20px;
+  }
 }
 
 .padding-left-clear {

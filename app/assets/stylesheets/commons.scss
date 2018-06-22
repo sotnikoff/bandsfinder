@@ -68,10 +68,10 @@ $logo_yellow: #f5a623;
 .more-span {
   display: inline-block;
   float: right;
-  color: #000;
+  //color: #000;
   font-size: 0.4rem;
   margin-top: 1.3rem;
-  opacity: 0.15;
+  //opacity: 0.15;
   @include icon-control;
 }
 
@@ -85,7 +85,7 @@ $logo_yellow: #f5a623;
     color: #000;
   }
   font-size: 1.8rem;
-  margin: 20px 0 20px 0!important;
+  margin: 20px 0 20px 0 !important;
 }
 
 @mixin site-block {
@@ -155,7 +155,7 @@ nav {
     li {
       display: table-cell;
       position: relative;
-      &:nth-of-type(1){
+      &:nth-of-type(1) {
         a {
           text-align: left;
         }
@@ -166,7 +166,7 @@ nav {
       position: relative;
       width: 100%;
       height: 100%;
-      text-align:center;
+      text-align: center;
       line-height: 50px;
       @include roboto-light;
       font-size: 1.2rem;
@@ -183,7 +183,6 @@ $red_text: #fca28b;
   }
   border-top: solid 3px $red_text;
 }
-
 
 aside, article {
   @include site-block;
@@ -283,7 +282,6 @@ aside {
   @include custom-input;
 }
 
-
 .form-label {
   color: #4a4a4a;
   font-size: 1.4rem;
@@ -293,7 +291,7 @@ aside {
   line-height: 1;
 }
 
-.form-submit {
+@mixin form-btn {
   padding: 10px 30px 10px 30px;
   border: solid 1px $logo_yellow;
   font-size: 1.4rem;
@@ -308,6 +306,16 @@ aside {
   }
 }
 
+.form-submit {
+  @include form-btn;
+}
+
+.form-submit-link {
+  @include form-btn;
+  text-align: center;
+  text-decoration: none!important;
+}
+
 .yellow-btn {
   height: 40px;
   border: solid 1px $logo_yellow;
@@ -315,8 +323,11 @@ aside {
   @include roboto-light;
   margin: 20px 0 20px 0;
   background-color: $logo_yellow;
-  color: #fff;
+  color: #fff !important;
   text-align: center;
+  padding: 10px 30px 10px 30px;
+  display: inline-block;
+  text-decoration: none !important;
 }
 
 .form-select {
@@ -358,6 +369,13 @@ aside {
     text-align: center;
     @include roboto-light;
     font-size: 1.4rem;
+    color: $logo_yellow;
+  }
+}
+
+.disabled-btn {
+  &:hover {
+    background: transparent;
     color: $logo_yellow;
   }
 }
