@@ -13,11 +13,11 @@ class BandsController < ApplicationController
   end
 
   def create
-    band = Band.new(user_id: current_user.id)
+    band = Band.new(band_params.merge(user_id: current_user.id))
     if band.save
       redirect_to band_path(band)
     else
-      redirect_to root
+      redirect_to root_path
     end
   end
 
@@ -28,6 +28,10 @@ class BandsController < ApplicationController
   def destroy; end
 
   private
+
+  def band_params
+    params.require(:band).permit(:title, :description, :genre_id, :image)
+  end
 
   def check_requests
     request = BandRequest.where(musician_id: current_user&.musician, band_id: params[:id]).first
