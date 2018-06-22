@@ -6,9 +6,10 @@
       img.photo alt="userpic" src=""
     #info-wrapper.col-md-9
       #data-profile
-        p.name AC/DC
+        p.name = "Band #{@band.id}"
         p.login @angus
-        p.info-user Австралия, Сидней
+        p.info-user
+          = link_to "Администратор: #{@band.user.name}", profile_path(@band.user.id)
       .row
         #bands-skills
           .col-md-6
@@ -16,29 +17,30 @@
               p.title-par Участники
               hr
               .info-list
-                a
-                  p
-                  | Ангус Янг&nbsp;
-                  span
-                    | @angus, гитарист
-                a
-                  p
-                  | Ангус Янг&nbsp;
-                  span
-                    | @angus, гитарист
-                a
-                  p
-                  | Ангус Янг&nbsp;
-                  span
-                    | @angus, гитарист
+                - @band.musicians.each do |member|
+                  li= member.user.email
+                / a
+                /   p
+                /   | Ангус Янг&nbsp;
+                /   span
+                /     | @angus, гитарист
           .col-md-6
             .skills
-              p.title-par Персональные страницы
+              p.title-par Заявки на вступление
               hr
               .info-list
-                a href="#" Страница музыканта
-                br
-                a href="#" Страница звукорежиссера
+                - @band.band_requests.each do |req|
+                  p= "Request ##{req.id}"
+                  - if req.status_approved? || req.status_declined?
+                    p= req.status.humanize
+                  - else
+                    = form_tag(band_request_approve_path(id: req.id))
+                    = submit_tag 'Approve request'
+                    = form_tag(band_request_decline_path(id: req.id))
+                    = submit_tag 'Reject request'
+                / a href="#" Страница музыканта
+                / br
+                / a href="#" Страница звукорежиссера
 
 
 h1= "Band ##{@band.id}"
