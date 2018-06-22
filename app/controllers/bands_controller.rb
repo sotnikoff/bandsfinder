@@ -23,7 +23,7 @@ class BandsController < ApplicationController
     if band.save
       redirect_to band_path(band)
     else
-      redirect_to root
+      redirect_to root_path
     end
   end
 
@@ -34,6 +34,10 @@ class BandsController < ApplicationController
   def destroy; end
 
   private
+
+  def band_params
+    params.require(:band).permit(:title, :description, :genre_id, :image)
+  end
 
   def check_requests
     request = BandRequest.where(musician_id: current_user&.musician, band_id: params[:id]).first

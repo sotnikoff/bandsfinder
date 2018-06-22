@@ -1,68 +1,52 @@
 #main-pane.pane
   .pane-title
-    span.icon-ic-more.more-span
+    p Личная информация
+    span.more-span= image_tag('more.svg')
+  hr.pane-hr
   .pane-content
     .col-md-3
-      img.photo alt="userpic" src=""
+      - if current_user.avatar.attached?
+        = image_tag(current_user.avatar.variant(combine_options: { resize: '700',
+                gravity: 'center', extent: '500x500' }), class: 'photo', alt: current_user.name)
+      - else
+        = image_tag 'default_user_0.jpg', class: 'photo', alt: current_user.name
     #info-wrapper.col-md-9
       #data-profile
-        p.name Ангус Янг
-        p.login @angus
-        p.info-user Гитарист, 63 года, Австралия, Сидней
-      .row
-        #short-info
-          .col-md-6
-            p Краткая информация
-          .col-md-6
-            p
-              | Ангус развлекает публику, интенсивно прыгая и бегая взад-вперёд по сцене, не
-              | прекращая
-              | играть на гитаре. Во времена Бон Скотта в AC/DC, Ангус часто забирался к нему на
-              | плечи
-              | во время концертов, и они вместе пробирались через публику.
+        p.name= current_user.name
+        p.login= "@#{current_user.name.downcase}"
+        p.info-user= user_place(current_user)
       .row
         #bands-skills
           .col-md-6
             .bands
-              p.title-par Коллективы
+              p.title-par Вы состоите в группах
               hr
               .info-list
-                p
-                  | AC/DC
-                  span @acdc
-                p с 1973 года
-                p
-                  | AC/DC
-                  span @acdc
-                p с 1973 года
-                p
-                  | AC/DC
-                  span @acdc
-                p с 1973 года
+                - current_user.bands.each do |band|
+                  = link_to band_path(band.id)
+                    p= band.id
+                    | &nbsp;
+                    span= "@#{band.id}"
+            = link_to 'Create new group', new_band_path, class: 'form-submit-link'
           .col-md-6
             .skills
-              p.title-par Навыки
+              p.title-par Персональные страницы
               hr
               .info-list
-                p Электрогитара
-                p 58 лет
-                p Вокал
-                p 58 лет
+                = link_to 'Musician Page', musician_path(current_user.musician) if current_user.musician.present?
 
-
-
-h1= @user.email
-h3 Musician profile
-p= link_to 'Edit my profile', edit_user_registration_path
-- if @user.musician
-  ul
-    li= link_to 'show page', musician_path(current_user.musician.id)
-    li= link_to 'delete page', musicians_path, method: :delete
-- else
-  = form_tag(musicians_path) do
-    = submit_tag 'create'
-h3 Group owner
-ul
-  - @user.bands.all.each do |band|
-    li= link_to band.id, band_path(band.id)
-=link_to 'create a band', new_band_path
+/ h1= @user.email
+/ h3 Musician profile
+/ p= link_to 'Edit my profile', edit_user_registration_path
+/ - if @user.musician
+/   ul
+/     li= link_to 'show page', musician_path(current_user.musician.id)
+/     li= link_to 'delete page', musicians_path, method: :delete
+/ - else
+/   = form_tag(musicians_path) do
+/     = submit_tag 'create'
+/ h3 Group owner
+/ ul
+/   - @user.bands.all.each do |band|
+/     li= link_to band.id, band_path(band.id)
+/ =link_to 'create a band', new_band_path

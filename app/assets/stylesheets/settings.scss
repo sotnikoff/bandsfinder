@@ -12,6 +12,19 @@
   color: #4a4a4a;
 }
 
+.confirm-pass {
+  .form-submit {
+    margin-right: 30px;
+  }
+}
+
+#confirm-modal-picture {
+  .form-submit {
+    width: auto;
+    margin-top: 20px;
+  }
+}
+
 .rules-upload {
   font-size: 14px;
   @include roboto-lightItalic;
@@ -21,7 +34,7 @@
 
 .narrow-part {
   padding: 15px 25px 0 30px;
-  .form-submit, .yellow-btn {
+  .form-submit, .form-submit-link {
     width: 100%;
     margin-top: 0;
   }
@@ -34,5 +47,8 @@
 #pages-info {
   .transparent_submit {
     margin-top: 0;
+  }
+  p:nth-of-type(2){
+    margin-top: 20px;
   }
 }
