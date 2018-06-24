@@ -18,12 +18,12 @@
               hr
               .info-list
                 - @band.musicians.each do |member|
-                  li= member.user.email
-                / a
-                /   p
-                /   | Ангус Янг&nbsp;
-                /   span
-                /     | @angus, гитарист
+                  / a
+                    /   p
+                    /   | Ангус Янг&nbsp;
+                    /   span
+                    /     | @angus, гитарист
+                  = link_to member.user.name, profile_path(member.user.id)
           .col-md-6
             .skills
               p.title-par Заявки на вступление
