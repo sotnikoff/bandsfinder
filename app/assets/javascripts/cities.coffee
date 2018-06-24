@@ -12,17 +12,33 @@ $ ->
   if countryTag.length == 0
     return null
 
-  axios.get('/countries.json')
-    .then((response) ->
-      appendCountry(country) for country in response.data
-      value = countryTag.val()
-      axios.get("/regions/#{value}.json")
-        .then((response) ->
-          appendRegion(region) for region in response.data
-          value = countryTag.val()
-          axios.get("/cities/#{value}.json")
-            .then((response) ->
-              appendCity(city) for city in response.data
-          )
-      )
-  )
+  getCountries = (tagValue) ->
+    countryTag.html('')
+    axios.get('/countries.json')
+      .then((response) ->
+        appendCountry(country) for country in response.data
+        if tagValue == undefined
+          tagValue = countryTag.val()
+        getRegions(tagValue)
+    )
+
+  getRegions = (countryID) ->
+    regionTag.html('')
+    axios.get("/regions/#{countryID}.json")
+      .then((response) ->
+        appendRegion(region) for region in response.data
+        value = regionTag.val()
+        getCities(value)
+    )
+
+  getCities = (cityID) ->
+    cityTag.html('')
+    axios.get("/cities/#{cityID}.json")
+      .then((response) ->
+        appendCity(city) for city in response.data
+    )
+
+  getCountries()
+
+  countryTag.on('change', (e) -> getRegions(e.target.value))
+  regionTag.on('change', (e) -> getCities(e.target.value))
