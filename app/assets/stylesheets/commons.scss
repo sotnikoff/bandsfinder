@@ -276,8 +276,6 @@ aside {
   width: 80%;
   padding: 6px 8px 6px 8px;
   &[placeholder] {
-    //font-size: 1rem;
-    //color: #9b9b9b;
     @include roboto-light;
   }
 }
