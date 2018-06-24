@@ -1,6 +1,8 @@
 #main-pane.pane
   .pane-title
-    span.icon-ic-more.more-span
+    p Личная информация
+    span.more-span= image_tag('more.svg')
+  hr.pane-hr
   .pane-content
     .col-md-3
       - if @musician.user.avatar.attached?
