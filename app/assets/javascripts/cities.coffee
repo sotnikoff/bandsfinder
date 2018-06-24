@@ -9,7 +9,7 @@ $ ->
   appendRegion = (region) -> regionTag.append("<option value='#{region.id}'>#{region.title}</option>")
   appendCity = (city) -> cityTag.append("<option value='#{city.id}'>#{city.title}</option>")
 
-  if countryTag.length == 0
+  if countryTag.length == 0 || regionTag .length == 0 || cityTag.length == 0
     return null
 
   getCountries = (tagValue) ->
