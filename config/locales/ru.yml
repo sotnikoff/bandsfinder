@@ -1,6 +1,16 @@
 ---
 ru:
   activerecord:
+    models:
+      user: Пользователь
+    attributes:
+      user:
+        name: Имя
+        email: Электронная почта
+        city_id: Город
+        password: Пароль
+        password_confirmation: Подтверждение пароля
+        avatar: Изображение профиля
     errors:
       messages:
         record_invalid: 'Возникли ошибки: %{errors}'
