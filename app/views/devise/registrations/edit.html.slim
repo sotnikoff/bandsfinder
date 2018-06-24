@@ -27,8 +27,8 @@
         select#country.form-select name="country"
         label.form-label for="region"  Регион
         select#region.form-select name="region"
-        = f.label :city_id, for: 'city', class: 'form-label'
-        = f.select :city_id, [], {}, { id: 'city', class: 'form-select' }
+        label.form-label for="city"  Город
+        select#city.form-select name="city"
 .pane
   .pane-title
     p Фотография профиля
