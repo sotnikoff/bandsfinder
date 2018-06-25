@@ -23,12 +23,16 @@
                 = f.submit 'Save', class: 'form-submit'
                 button.form-submit data-dismiss="modal" type="button" Отмена
       .col-md-6.form-half
+        = hidden_field :skip_city_load, nil, value: 'true'
         label.form-label for="country"  Страна
-        select#country.form-select name="country"
+        = select_tag :country,
+                options_for_select(Country.alphabetical.map {|c| [c.title, c.id]}, current_user.city.region.country.id), class: 'form-select', id: 'country'
         label.form-label for="region"  Регион
-        select#region.form-select name="region"
+        = select_tag :region,
+                options_for_select(current_user.city.region.country.regions.all.map {|r| [r.title, r.id]}, current_user.city.region.id), class: 'form-select', id: 'region'
         = f.label :city_id, for: 'id', class: 'form-label'
-        = f.select :city_id, [], {}, class: 'form-select', id: 'city'
+        = f.select :city_id,
+                options_for_select(current_user.city.region.cities.all.map { |c| [c.title, c.id ] }, current_user.city.id), {}, class: 'form-select', id: 'city'
 .pane
   .pane-title
     p Фотография профиля

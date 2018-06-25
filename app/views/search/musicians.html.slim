@@ -34,20 +34,23 @@ nav#search-navbar.page-navbar
                 options_from_collection_for_select(Skill.alphabetical, 'id', 'title', @query.musician_skills_skill_id_eq),
                 { include_blank: true }, { class: 'form-select' }
 #result-pane.pane
-  - @musicians.each do |musician|
-    .result-note
-      = link_to musician_path(musician)
-        - if musician.user.avatar.attached?
-          = image_tag(musician.user.avatar.variant(combine_options: { resize: '550',
-                  gravity: 'center', extent: '300x300' }))
-        - else
-          = image_tag('default_user_0.jpg')
-        .result-info
-          p
-            span= musician.user.name
-            | @angus
-          - skills = (musician.musician_skills.map { |skill| skill.skill.title }).join(', ')
-          p= "#{musician.user.city.region.country.title}, #{musician.user.city.region.title}, #{musician.user.city.title}, #{skills}"
+  - if @musicians.length.zero?
+    p Поиск не дел нифига
+  - else
+    - @musicians.each do |musician|
+      .result-note
+        = link_to musician_path(musician)
+          - if musician.user.avatar.attached?
+            = image_tag(musician.user.avatar.variant(combine_options: { resize: '550',
+                    gravity: 'center', extent: '300x300' }))
+          - else
+            = image_tag('default_user_0.jpg')
+          .result-info
+            p
+              span= musician.user.name
+              | @angus
+            - skills = (musician.musician_skills.map { |skill| skill.skill.title }).join(', ')
+            p= "#{musician.user.city.region.country.title}, #{musician.user.city.region.title}, #{musician.user.city.title}, #{skills}"
   / = paginate @musicians
   / ul.result-pag
   /   li
