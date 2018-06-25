@@ -1,6 +1,6 @@
 .pane
   .pane-title
-    p Личная информация
+    p= t('.personal_info')
     span.icon-ic-more.more-span
   hr.pane-hr
   .pane-content
@@ -9,7 +9,7 @@
         = f.label :name, class: 'form-label'
         = f.text_field :name, class: 'form-input', id: 'name'
         button data-target="#confirm-modal" data-toggle="modal" role="button" class="form-submit" type="button"
-          | Сохранить
+          = t '.save'
         #confirm-modal.confirm-pass.modal.fade aria-hidden="true" aria-labelledby="confirm-modal-label" role="dialog" tabindex="-1"
           .modal-dialog role="document"
             .modal-content
@@ -23,11 +23,13 @@
                 = f.submit 'Save', class: 'form-submit'
                 button.form-submit data-dismiss="modal" type="button" Отмена
       .col-md-6.form-half
-        label.form-label for="country"  Страна
+        = f.label :country, for: 'country', class: 'form-label'
+        /label.form-label for="country"  Страна
         select#country.form-select name="country"
-        label.form-label for="region"  Регион
+        /label.form-label for="region"  Регион
+        = f.label :region, for: 'region', class: 'form-label'
         select#region.form-select name="region"
-        = f.label :city_id, for: 'id', class: 'form-label'
+        = f.label :city_id, for: 'city_id', class: 'form-label'
         = f.select :city_id, [], {}, class: 'form-select', id: 'city'
 .pane
   .pane-title

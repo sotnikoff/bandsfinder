@@ -1,5 +1,10 @@
 ---
 ru:
+  devise:
+    registrations:
+      edit:
+        personal_info: Личная информация
+        save: Сохранить
   common:
     search_musician: Поиск музыкантов
     settings: Настройки профиля
@@ -35,6 +40,8 @@ ru:
         password: Пароль
         password_confirmation: Подтверждение пароля
         avatar: Изображение профиля
+        region: Область/регион
+        country: Страна
     errors:
       messages:
         record_invalid: 'Возникли ошибки: %{errors}'
