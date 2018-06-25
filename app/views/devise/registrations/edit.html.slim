@@ -19,7 +19,7 @@
                 h4#myModalLabel.modal-title Подтверждение смены данных
               .modal-body
                 = f.label :current_password, class: 'form-label'
-                = f.password_field :current_password, class: 'form-input', placeholder: '******'
+                = f.password_field :current_password, class: 'form-input'
                 = f.submit 'Save', class: 'form-submit'
                 button.form-submit data-dismiss="modal" type="button" Отмена
       .col-md-6.form-half
@@ -27,8 +27,8 @@
         select#country.form-select name="country"
         label.form-label for="region"  Регион
         select#region.form-select name="region"
-        label.form-label for="city"  Город
-        select#city.form-select name="city"
+        = f.label :city_id, for: 'id', class: 'form-label'
+        = f.select :city_id, [], {}, class: 'form-select', id: 'city', name: 'user[city]'
 .pane
   .pane-title
     p Фотография профиля

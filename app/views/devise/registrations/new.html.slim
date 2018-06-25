@@ -17,8 +17,10 @@
           select#country.form-select name="country"
           label.form-label for="region"  Регион
           select#region.form-select name="region"
-          label.form-label for="city"  Город
-          select#city.form-select name="city"
+          = f.label :city_id, for: 'id', class: 'form-label'
+          = f.select :city_id, [], {}, class: 'form-select', id: 'city'
+          / label.form-label for="city"  Город
+          / select#city.form-select name="city"
           = f.label :avatar, class: 'form-label'
           .file-upload
             label
