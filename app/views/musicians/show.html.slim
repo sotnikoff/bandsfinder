@@ -1,10 +1,12 @@
 #main-pane.pane
   .pane-title
-    span.icon-ic-more.more-span
+    p Личная информация
+    span.more-span= image_tag('more.svg')
+  hr.pane-hr
   .pane-content
     .col-md-3
       - if @musician.user.avatar.attached?
-        = image_tag(@musician.user.avatar.variant(combine_options: {resize: '700',
+        = image_tag(@musician.user.avatar.variant(combine_options: {resize: '900',
                 gravity: 'center', extent: '500x500'}), class: 'photo', alt: @musician.user.name)
       - else
         = image_tag 'default_user_0.jpg', class: 'photo', alt: @musician.user.name

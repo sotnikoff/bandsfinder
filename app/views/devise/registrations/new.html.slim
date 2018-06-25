@@ -13,9 +13,14 @@
           = f.label :name, class: 'form-label'
           = f.text_field :name, class: 'form-input',
                   autocomplete: 'off', placeholder: 'Name'
-          = f.label :city_id, class: 'form-label'
-          = f.text_field :city_id, class: 'form-input',
-                  autocomplete: 'off', placeholder: 'City'
+          label.form-label for="country"  Страна
+          select#country.form-select name="country"
+          label.form-label for="region"  Регион
+          select#region.form-select name="region"
+          = f.label :city_id, for: 'id', class: 'form-label'
+          = f.select :city_id, [], {}, class: 'form-select', id: 'city'
+          / label.form-label for="city"  Город
+          / select#city.form-select name="city"
           = f.label :avatar, class: 'form-label'
           .file-upload
             label
