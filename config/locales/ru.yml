@@ -1,9 +1,22 @@
 ---
 ru:
+  bands:
+    form:
+      upload: Загрузить логотип
+      new: Создать группу
+      edit: Редактировать группу
+      update: Обновить группу
+      create: Создать группу
   activerecord:
     models:
+      band: Группа
       user: Пользователь
     attributes:
+      band:
+        title: Название
+        description: Описание
+        genre_id: Стиль музыки
+        avatar: Логотип группы
       user:
         name: Имя
         email: Электронная почта

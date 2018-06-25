@@ -1,6 +1,6 @@
 #create-group.pane
   .pane-title
-    p Создать группу
+    p= action
     span.icon-ic-more.more-span
   hr.pane-hr
   .pane-content
@@ -10,14 +10,15 @@
         = f.text_field :title, class: 'form-input', placeholder: 'Название группы'
         = f.label :description, class: 'form-label'
         = f.text_area :description, class: 'form-input', rows: 10
-        = f.submit nil, class:'form-submit'
+        = f.submit submit_text, class:'form-submit'
       .col-md-6.form-half
         = f.label :genre_id, class: 'form-label'
         = f.select :genre_id, options_for_select(Genre.for_select, band&.genre&.id), {}, class: 'form-select'
-        label.form-label Логотип
+        = f.label :avatar, class: 'form-label'
+        /label.form-label Логотип
         .img
         .file-upload
           label
             / input name="file" type="file" /
             = f.file_field :image
-            p Загрузить логотип
+            p= t '.upload'
