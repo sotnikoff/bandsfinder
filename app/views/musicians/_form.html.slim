@@ -1,0 +1,22 @@
+#create-group.pane
+  .pane-title
+    p Редактирование страницы музыканта
+    span.icon-ic-more.more-span
+  hr.pane-hr
+  .pane-content
+    = form_for(musician) do |f|
+      .col-md-6.form-half
+        = f.label :name, class: 'form-label'
+        = f.text_field :name, class: 'form-input', placeholder: 'Имя'
+        = f.label :description, class: 'form-label'
+        = f.text_area :description, class: 'form-input', rows: 10
+        = f.submit nil, class:'form-submit'
+      .col-md-6.form-half
+        = f.label :skill_id, class: 'form-label'
+        = f.select :skill_id, options_from_collection_for_select(Skill.all, 'id', 'title'), {}, class: 'form-select'
+        label.form-label Фото
+        .img
+        .file-upload
+          label
+            = f.file_field :image
+            p Загрузить логотип
