@@ -37,9 +37,11 @@ nav#search-navbar.page-navbar
   - @musicians.each do |musician|
     .result-note
       = link_to musician_path(musician)
-        / img alt="photo" src="images/angus_yang.png" /
-        = image_tag(musician.user.avatar.variant(combine_options: { resize: '440',
-                gravity: 'center', extent: '300x300' })) if musician.user.avatar.attached?
+        - if musician.user.avatar.attached?
+          = image_tag(musician.user.avatar.variant(combine_options: { resize: '550',
+                  gravity: 'center', extent: '300x300' }))
+        - else
+          = image_tag('default_user_0.jpg')
         .result-info
           p
             span= musician.user.name
