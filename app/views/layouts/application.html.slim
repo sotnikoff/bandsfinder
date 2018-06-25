@@ -53,10 +53,10 @@ html
               = link_to 'Log out', destroy_user_session_path, role: 'menuitem', tabindex: '-1', method: :delete
       #news-content.row
         aside.col-md-3
-          = link_to 'Search musician', search_musicians_path
+          = link_to t('common.search_musician'), search_musicians_path
           ul.dark-menu
             li
-              = link_to 'My profile', profile_path(current_user)
+              = link_to t('common.my_profile'), profile_path(current_user)
             li
               a href="#"  Мои новости
             li
@@ -73,7 +73,7 @@ html
               a href="#"  Продюсеры и центры
           ul.light-menu
             li
-              = link_to 'Settings', edit_user_registration_path
+              = link_to t('common.settings'), edit_user_registration_path
             li
               a href="#"  Помощь
             li

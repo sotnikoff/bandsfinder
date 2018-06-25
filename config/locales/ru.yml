@@ -1,5 +1,9 @@
 ---
 ru:
+  common:
+    search_musician: Поиск музыкантов
+    settings: Настройки профиля
+    my_profile: Мой профиль
   bands:
     form:
       upload: Загрузить логотип
@@ -7,6 +11,13 @@ ru:
       edit: Редактировать группу
       update: Обновить группу
       create: Создать группу
+  profiles:
+    show:
+      groups: Группы пользователя
+      personal_info: Личная информация
+      personal_pages: Персональные страницы
+      create_group: Создать новую группу
+      musician_page: Страница музыканта
   activerecord:
     models:
       band: Группа

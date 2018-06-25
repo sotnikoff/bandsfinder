@@ -1,6 +1,6 @@
 #main-pane.pane
   .pane-title
-    p Личная информация
+    p= t '.personal_info'
     span.more-span= image_tag('more.svg')
   hr.pane-hr
   .pane-content
@@ -19,7 +19,7 @@
         #bands-skills
           .col-md-6
             .bands
-              p.title-par Группы пользователя
+              p.title-par= t '.groups'
               hr
               .info-list
                 - @user.bands.each do |band|
@@ -27,13 +27,13 @@
                     p= band.id
                     | &nbsp;
                     span= "@#{band.id}"
-            = link_to 'Create new group', new_band_path, class: 'form-submit-link' if @user == current_user
+            = link_to t('.create_group'), new_band_path, class: 'form-submit-link' if @user == current_user
           .col-md-6
             .skills
-              p.title-par Персональные страницы
+              p.title-par= t '.personal_pages'
               hr
               .info-list
-                = link_to 'Musician Page', musician_path(@user.musician) if @user.musician.present?
+                = link_to t('.musician_page'), musician_path(@user.musician) if @user.musician.present?
 
 / h1= @user.email
 / h3 Musician profile
