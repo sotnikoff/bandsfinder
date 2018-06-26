@@ -35,7 +35,7 @@ nav#search-navbar.page-navbar
                 { include_blank: true }, { class: 'form-select' }
 #result-pane.pane
   - if @musicians.length.zero?
-    p Поиск не дел нифига
+    p.notice Поиск не дал результатов!
   - else
     - @musicians.each do |musician|
       .result-note
