@@ -1,17 +1,22 @@
 class BandRequestsController < ApplicationController
+  before_action :authenticate_user!
   before_action :check_owner, only: %i[approve decline]
 
   def create
-    BandRequest.find_or_create_by(musician_id: current_user.musician.id, band_id: params[:band_id])
+    authorize(BandRequest)
+    find_or_create_br
     redirect_to band_path(params[:band_id])
   end
 
   def approve
-    operate_approval
+    authorize(@band_request)
+    ApproveBandRequest.call(@band_request)
+    redirect_to band_path(@band_request.band.id)
   end
 
   def decline
-    operate_decline
+    DeclineBandRequest.call(@band_request)
+    redirect_to band_path(@band_request.band.id)
   end
 
   def revoke; end
@@ -26,18 +31,7 @@ class BandRequestsController < ApplicationController
     end
   end
 
-  def operate_approval
-    if @band_request.status_new?
-      @band_request.status_approved!
-      band = @band_request.band
-      musician = @band_request.musician
-      band.musicians << musician unless band.musicians.exists?(musician.id)
-    end
-    redirect_to band_path(@band_request.band.id)
-  end
-
-  def operate_decline
-    @band_request.status_declined! if @band_request.status_new?
-    redirect_to band_path(@band_request.band.id)
+  def find_or_create_br
+    BandRequest.find_or_create_by(musician_id: current_user.musician.id, band_id: params[:band_id])
   end
 end

@@ -1,5 +1,62 @@
-h1 Skills
-ul
-- @musician.musician_skills.each do |musician_skill|
-  li= "#{musician_skill.skill.title} (#{musician_skill.comment})"
-= link_to 'edit profile', edit_musician_path(@musician.id) if policy(@musician).update?
+#main-pane.pane
+  .pane-title
+    p Личная информация
+    -if policy(@musician).edit?
+      span.more-span type='button' id='edit-musician' data-toggle='dropdown' = image_tag('more.svg')
+      ul.more-menu.dropdown-menu.dropdown-menu-right aria-labelledby='edit-musician' role='menu'
+        li role='presentation'
+          = link_to 'Edit musician page', edit_musician_path(@musician), role: 'menuitem', tabindex: '-1'
+  hr.pane-hr
+  .pane-content
+    .col-md-3
+      - if @musician.user.avatar.attached?
+        = image_tag(@musician.user.avatar.variant(combine_options: {resize: '900',
+                gravity: 'center', extent: '500x500'}), class: 'photo', alt: @musician.user.name)
+      - else
+        = image_tag 'default_user_0.jpg', class: 'photo', alt: @musician.user.name
+    #info-wrapper.col-md-9
+      #data-profile
+        p.name= @musician.user.name
+        p.login= "@#{@musician.user.name.downcase}"
+        p.info-user= user_place(@musician.user)
+      .row
+        #short-info
+          .col-md-6
+            p Краткая информация
+          .col-md-6
+            p= @musician.description
+      .row
+        #bands-skills
+          .col-md-6
+            .bands
+              p.title-par Коллективы
+              hr
+              .info-list
+                - @musician.user.bands.each do |band|
+                  = link_to band_path(band.id) do
+                    p
+                      = band.id
+                      span= '@Владелец'
+                    p с 1973 года
+                - @musician.bands.each do |band|
+                  = link_to band_path(band.id) do
+                    p
+                      = band.id
+                      span= '@Участник'
+                    p с 1973 года
+          .col-md-6
+            .skills
+              p.title-par Навыки
+              hr
+              .info-list
+                - @musician.musician_skills.each do |musician_skill|
+                  p= musician_skill.skill.title
+                  p= musician_skill.comment
+
+
+
+/ h1 Skills
+/ ul
+/ - @musician.musician_skills.each do |musician_skill|
+/   li= "#{musician_skill.skill.title} (#{musician_skill.comment})"
+/ = link_to 'edit profile', edit_musician_path(@musician.id) if policy(@musician).update?

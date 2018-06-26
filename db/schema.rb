@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_11_131251) do
+ActiveRecord::Schema.define(version: 2018_06_25_160910) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,11 @@ ActiveRecord::Schema.define(version: 2018_06_11_131251) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "title"
+    t.string "description"
+    t.bigint "genre_id"
+    t.string "image"
+    t.index ["genre_id"], name: "index_bands_on_genre_id"
     t.index ["user_id"], name: "index_bands_on_user_id"
   end
 
@@ -95,15 +100,22 @@ ActiveRecord::Schema.define(version: 2018_06_11_131251) do
   create_table "cities", force: :cascade do |t|
     t.string "title"
     t.string "code"
-    t.bigint "country_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["country_id"], name: "index_cities_on_country_id"
+    t.bigint "region_id"
+    t.index ["region_id"], name: "index_cities_on_region_id"
   end
 
   create_table "countries", force: :cascade do |t|
     t.string "title"
     t.string "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -122,7 +134,17 @@ ActiveRecord::Schema.define(version: 2018_06_11_131251) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "description"
     t.index ["user_id"], name: "index_musicians_on_user_id"
+  end
+
+  create_table "regions", force: :cascade do |t|
+    t.string "title"
+    t.string "code"
+    t.bigint "country_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["country_id"], name: "index_regions_on_country_id"
   end
 
   create_table "skills", force: :cascade do |t|
@@ -155,12 +177,13 @@ ActiveRecord::Schema.define(version: 2018_06_11_131251) do
 
   add_foreign_key "band_requests", "bands"
   add_foreign_key "band_requests", "musicians"
+  add_foreign_key "bands", "genres"
   add_foreign_key "bands", "users"
   add_foreign_key "bands_musicians", "bands"
   add_foreign_key "bands_musicians", "musicians"
-  add_foreign_key "cities", "countries"
   add_foreign_key "musician_skills", "musicians"
   add_foreign_key "musician_skills", "skills"
   add_foreign_key "musicians", "users"
+  add_foreign_key "regions", "countries"
   add_foreign_key "users", "cities"
 end

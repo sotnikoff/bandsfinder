@@ -1,0 +1,43 @@
+#create-group.pane
+  .pane-title
+    p Редактирование страницы музыканта
+    span.icon-ic-more.more-span
+  hr.pane-hr
+  .pane-content
+    = form_for(@musician) do |f|
+      .col-md-6.form-half
+        = f.label :description, class: 'form-label'
+        = f.text_area :description, class: 'form-input', rows: 10
+        = f.submit nil, class: 'form-submit'
+      .col-md-6.form-half
+        label.form-label Фото
+        .img
+        .file-upload
+          label
+            = f.file_field :image
+            p Загрузить логотип
+.pane
+  .pane-title
+    p Редактирование скиллов музыканта
+    span.icon-ic-more.more-span
+  hr.pane-hr
+  .pane-content
+    .col-md-6.form-half
+      = form_tag(musician_skills_path) do
+        = hidden_field_tag :musician_id, @musician.id
+        = label_tag :skill_id, 'Skill', class: 'form-label'
+        = select_tag :skill_id, options_from_collection_for_select(Skill.all, 'id', 'title'), class: 'form-select'
+        = label_tag :comment, 'Comment', class: 'form-label'
+        = text_field_tag :comment, nil, class: 'form-input'
+        = submit_tag 'Add skill', class: 'form-submit'
+    .col-md-6.form-half
+      - @musician.musician_skills.each do |musician_skill|
+        .row.margin_clear.skills-wrapper
+          = form_tag(musician_skill_path(musician_skill.id), method: :delete) do
+            .col-md-3
+              = label_tag :musician_id, "#{musician_skill.skill.title} (#{musician_skill.comment})", class: 'form-label'
+              = hidden_field_tag :musician_id, @musician.id
+            .col-md-2
+              = button_tag(type: 'submit', class: 'delete-skill-icon-wrapper') do
+                i.glyphicon.glyphicon-remove-sign.delete-skill-icon
+

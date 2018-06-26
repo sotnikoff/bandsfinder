@@ -21,9 +21,9 @@ html[lang="en"]
             | С помощью BandsFinder вы сможете найти новых музыкантов,
             br
             |  вступить в группу, найти композиторов и авторов текстов
-        form.login-form[action="#" method="post"]
-          p.login-form-text
-            | Зарегистрируйтесь сейчас
-          input.login-form-input[type="email" placeholder="Адрес электронной почты…"]
-          input.login-form-input[type="password" placeholder="Пароль…"]
-          input.login-form-submit[type="submit" value="Зарегистрироваться"]
+        #btn-auth-wrapper
+          - if user_signed_in?
+            = link_to 'My profile', profile_path(current_user.id), class: 'redirect-auth-btn'
+          - else
+            = link_to 'Sign in', new_user_session_path, class: 'redirect-auth-btn'
+            = link_to 'Sign up', new_user_registration_path, class: 'redirect-auth-btn'

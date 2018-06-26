@@ -11,6 +11,7 @@ AllCops:
     - spec/rails_helper.rb
     - node_modules/**/*
     - Capfile
+    - app/controllers/users/*
   TargetRubyVersion: 2.4
   DisplayCopNames: true
 
@@ -34,6 +35,14 @@ Metrics/BlockLength:
     - config/routes.rb
     - spec/**/*.rb
     - app/admin/**/*.rb
+
+Metrix/MethodLength:
+  Exclude:
+    - app/controllers/users/**/*.rb
+
+Metrics/AbcSize:
+  Exclude:
+    - app/controllers/users/**/*.rb
 
 Metrics/ClassLength:
   Max: 210

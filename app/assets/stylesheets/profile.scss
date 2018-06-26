@@ -1,0 +1,80 @@
+main {
+  padding: 0 0 0 15px !important;
+}
+
+#main-pane {
+  padding-bottom: 60px;
+  .pane-content {
+    padding-top: 20px;
+  }
+}
+
+.padding-left-clear {
+  padding-left: 0!important;
+}
+
+#data-profile {
+  padding-top: 50px;
+  p {
+    margin-bottom: 0!important;
+  }
+  .name {
+    @include roboto-bold;
+    font-size: 28px;
+  }
+  .login, .info-user {
+    @include roboto-regular;
+  }
+  .login {
+    font-size: 16px;
+  }
+  .info-user {
+    margin-top: 17px;
+    font-size: 14px;
+  }
+}
+
+#short-info {
+  margin-top: 30px;
+  p {
+    @include roboto-regular;
+    color: #9b9b9b;
+    font-size: 12px;
+  }
+}
+
+#bands-skills {
+  margin-top: 20px;
+  .title-par {
+    @include roboto-bold;
+    font-size: 18px;
+    color: #4a4a4a;
+    margin-bottom: 0!important;
+  }
+  hr {
+    margin: 0!important;
+    background-color: $logo_yellow;
+    height: 2px;
+  }
+}
+
+.info-list {
+  margin-top: 10px;
+  p {
+    @include roboto-regular;
+  }
+  p:nth-of-type(even){
+    font-size: 12px;
+    color: #9b9b9b;
+    margin: 0 0 12px 18px!important;
+  }
+  p:nth-of-type(odd){
+    margin-bottom: 5px!important;
+    font-size: 14px;
+    color: #4a4a4a;
+    span {
+      font-size: 12px;
+      color: #9b9b9b;
+    }
+  }
+}

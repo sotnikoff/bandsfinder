@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
+  get 'cities/index'
+  get 'regions/index'
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   scope format: false do
     get 'profiles/:id', to: 'profiles#show', as: 'profile'
 
-    devise_for :users, controllers: { registrations: 'users/registrations' }
+    devise_for :users, controllers: {
+      registrations: 'users/registrations',
+      sessions: 'users/sessions'
+    }
 
     resources :musicians, only: %i[show edit create update] do
       delete '/', action: 'destroy', on: :collection
@@ -28,6 +33,10 @@ Rails.application.routes.draw do
 
     root 'pages#index'
   end
+
+  get 'countries', to: 'countries#index', as: 'countries'
+  get 'regions/:country', to: 'regions#index', as: 'regions'
+  get 'cities/:region', to: 'cities#index', as: 'cities'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

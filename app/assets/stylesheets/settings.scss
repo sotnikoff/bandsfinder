@@ -1,0 +1,54 @@
+.pane:nth-of-type(n + 2){
+  margin-top: 20px;
+}
+
+.pane {
+  padding-bottom: 30px;
+}
+
+.title-par {
+  font-size: 14px;
+  @include roboto-regular;
+  color: #4a4a4a;
+}
+
+.confirm-pass {
+  .form-submit {
+    margin-right: 30px;
+  }
+}
+
+#confirm-modal-picture {
+  .form-submit {
+    width: auto;
+    margin-top: 20px;
+  }
+}
+
+.rules-upload {
+  font-size: 14px;
+  @include roboto-lightItalic;
+  color: #878787;
+  text-align: justify;
+}
+
+.narrow-part {
+  padding: 15px 25px 0 30px;
+  .form-submit, .form-submit-link {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+
+.wide-part {
+  padding: 15px 39px 0 53px !important;
+}
+
+#pages-info {
+  .transparent_submit {
+    margin-top: 0;
+  }
+  p:nth-of-type(2){
+    margin-top: 20px;
+  }
+}

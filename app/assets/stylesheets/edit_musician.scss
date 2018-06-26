@@ -1,0 +1,26 @@
+
+.margin_clear {
+  margin: 0!important;
+}
+
+.delete-skill-icon-wrapper {
+  background: transparent;
+  border: none;
+  outline-style: none;
+}
+
+.delete-skill-icon {
+  cursor: pointer;
+  color: blue;
+  font-size: 14px;
+  &:hover {
+    color: red;
+  }
+}
+
+.skills-wrapper {
+  .form-label, .delete-skill-icon {
+    margin-top: 20px!important;
+  }
+}
+

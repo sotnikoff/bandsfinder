@@ -1,10 +1,18 @@
 class MusicianPolicy < ApplicationPolicy
   def index?
-    true
+    true if user.present?
+  end
+
+  def show?
+    true if user.present?
+  end
+
+  def edit?
+    true if user.present? && user == musician.user
   end
 
   def create?
-    user.present?
+    true if user.present?
   end
 
   def update?

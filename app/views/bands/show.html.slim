@@ -1,25 +1,82 @@
-h1= "Band ##{@band.id}"
-h3= "Owner is #{@band.user.email}"
-h3 Members are
-ul
-  - @band.musicians.each do |member|
-    li= member.user.email
-- if current_user.musician
-  - if @has_request
-    p request already sent
-  - else
-    = form_tag(band_requests_create_path) do
-      = hidden_field_tag :band_id, @band.id
-      = submit_tag 'Submit request'
-- else
-  p you cannot send your request because you are not a registered musician
-- if @band.user.id == current_user.id
-  - @band.band_requests.each do |req|
-    p= "Request ##{req.id}"
-    - if req.status_approved? || req.status_declined?
-      p= req.status.humanize
-    - else
-      = form_tag(band_request_approve_path(id: req.id))
-        = submit_tag 'Approve request'
-      = form_tag(band_request_decline_path(id: req.id))
-        = submit_tag 'Reject request'
+#main-pane.pane
+  .pane-title
+    span.icon-ic-more.more-span
+  .pane-content
+    .col-md-3
+      - if @band.image.attached?
+        = image_tag(@band.image.variant(combine_options: {resize: '900',
+                gravity: 'center', extent: '500x500'}), class: 'photo', alt: @band.title)
+      - else
+        = image_tag 'default_user_0.jpg', class: 'photo', alt: @band.title
+    #info-wrapper.col-md-9
+      #data-profile
+        p.name = @band.title
+        p.login= "@#{@band.title}"
+        p.info-user
+          = link_to "Администратор: #{@band.user.name}", profile_path(@band.user.id)
+      .row
+        #bands-skills
+          .col-md-6
+            .bands
+              p.title-par Участники
+              hr
+              .info-list
+                - @band.musicians.each do |member|
+                  = link_to member.user.name, profile_path(member.user.id)
+          .col-md-6
+            .skills
+              p.title-par Заявки на вступление
+              hr
+              #requests.info-list
+                - @band.band_requests.each do |req|
+                  p= "Request ##{req.id}"
+                  - if req.status_approved? || req.status_declined?
+                    p= req.status.humanize
+                  - else
+                    .col-md-6
+                      = form_tag(band_request_approve_path(id: req.id))
+                        = submit_tag 'Approve', class: 'form-submit'
+                    .col-md-6
+                      = form_tag(band_request_decline_path(id: req.id))
+                        = submit_tag 'Reject', class: 'form-submit'
+              .clearfix
+              #request-user
+                p.title-par Отправить заявку
+                hr
+                - if current_user.musician
+                  - if @has_request
+                    p Request already sent!
+                  - else
+                    = form_tag(band_requests_create_path) do
+                      = hidden_field_tag :band_id, @band.id
+                      = submit_tag 'Submit request', class: 'form-submit'
+                - else
+                  p You cannot send your request because you are not a registered musician!
+
+
+/ h1= "Band ##{@band.id}"
+/ h3= "Owner is #{@band.user.email}"
+/ h3 Members are
+/ ul
+/   - @band.musicians.each do |member|
+/     li= member.user.email
+/ - if current_user.musician
+/   - if @has_request
+/     p request already sent
+/   - else
+/     = form_tag(band_requests_create_path) do
+/       = hidden_field_tag :band_id, @band.id
+/       = submit_tag 'Submit request'
+/ - else
+/   p you cannot send your request because you are not a registered musician
+/ - if @band.user.id == current_user.id
+/   - @band.band_requests.each do |req|
+/     p= "Request ##{req.id}"
+/     - if req.status_approved? || req.status_declined?
+/       p= req.status.humanize
+/     - else
+/       = form_tag(band_request_approve_path(id: req.id))
+/         = submit_tag 'Approve request'
+/       = form_tag(band_request_decline_path(id: req.id))
+/         = submit_tag 'Reject request'
+/

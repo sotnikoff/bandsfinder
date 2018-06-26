@@ -1,0 +1,111 @@
+.pane
+  .pane-title
+    p Личная информация
+    span.icon-ic-more.more-span
+  hr.pane-hr
+  .pane-content
+    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, id: 'personal-info-form' }) do |f|
+      .col-md-6.form-half
+        = f.label :name, class: 'form-label'
+        = f.text_field :name, class: 'form-input', id: 'name'
+        button data-target="#confirm-modal" data-toggle="modal" role="button" class="form-submit" type="button"
+          | Сохранить
+        #confirm-modal.confirm-pass.modal.fade aria-hidden="true" aria-labelledby="confirm-modal-label" role="dialog" tabindex="-1"
+          .modal-dialog role="document"
+            .modal-content
+              .modal-header
+                button.close aria-label="Close" data-dismiss="modal" type="button"
+                  span aria-hidden="true"  ×
+                h4#myModalLabel.modal-title Подтверждение смены данных
+              .modal-body
+                = f.label :current_password, class: 'form-label'
+                = f.password_field :current_password, class: 'form-input'
+                = f.submit 'Save', class: 'form-submit'
+                button.form-submit data-dismiss="modal" type="button" Отмена
+      .col-md-6.form-half
+        = hidden_field :skip_city_load, nil, value: 'true'
+        label.form-label for="country"  Страна
+        = select_tag :country,
+                options_for_select(Country.alphabetical.map {|c| [c.title, c.id]}, current_user.city.region.country.id), class: 'form-select', id: 'country'
+        label.form-label for="region"  Регион
+        = select_tag :region,
+                options_for_select(current_user.city.region.country.regions.all.map {|r| [r.title, r.id]}, current_user.city.region.id), class: 'form-select', id: 'region'
+        = f.label :city_id, for: 'id', class: 'form-label'
+        = f.select :city_id,
+                options_for_select(current_user.city.region.cities.all.map { |c| [c.title, c.id ] }, current_user.city.id), {}, class: 'form-select', id: 'city'
+.pane
+  .pane-title
+    p Фотография профиля
+    span.icon-ic-more.more-span
+  hr.pane-hr
+  .pane-content
+    .col-md-3.narrow-part
+      - if current_user.avatar.attached?
+        = image_tag(current_user.avatar.variant(combine_options: {resize: '900',
+                gravity: 'center', extent: '500x500'}), class: 'photo', alt: current_user.name)
+      - else
+        = image_tag 'default_user_0.jpg', class: 'photo', alt: current_user.name
+      = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, id: 'personal-info-form-pic' }) do |f|
+        .file-upload
+          label
+            = f.file_field :avatar
+            p Загрузить файл
+        button data-target="#confirm-modal-picture" data-toggle="modal" role="button" class="form-submit" type="button"
+          | Сохранить
+        #confirm-modal-picture.confirm-pass.modal.fade aria-hidden="true" aria-labelledby="confirm-modal-label" role="dialog" tabindex="-1"
+          .modal-dialog role="document"
+            .modal-content
+              .modal-header
+                button.close aria-label="Close" data-dismiss="modal" type="button"
+                  span aria-hidden="true"  ×
+                h4#myModalLabelPicture.modal-title Подтверждение смены данных
+              .modal-body
+                = f.label :current_password, class: 'form-label', for: 'current-password-pic'
+                = f.password_field :current_password, class: 'form-input', id: 'current-password-pic'
+                = f.submit 'Save', class: 'form-submit'
+                button.form-submit data-dismiss="modal" type="button" Отмена
+    .col-md-9.wide-part
+      p.title-par Правила загрузки изображений
+      p.rules-upload
+        | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget consectetur arcu, sit
+        | amet interdum ligula. Curabitur semper imperdiet scelerisque. Duis eleifend mi eget congue
+        | venenatis. Curabitur id quam ut felis congue dignissim sed ac tellus. Orci varius natoque
+        | penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed nec lorem volutpat,
+        | dictum ipsum id, pulvinar ligula.
+#pages-info.pane
+  .pane-title
+    p Профильные страницы
+    span.icon-ic-more.more-span
+  hr.pane-hr
+  .pane-content
+    .col-md-3.narrow-part
+      p.title-par Страница музыканта
+      - if current_user.musician.present?
+        = button_tag 'Уже создана', class: 'form-submit disabled-btn', disabled: true
+      - else
+        =  button_to 'Create', musicians_path, class: 'form-submit'
+      p.title-par Страница группы
+      = link_to 'Create', new_band_path, class: 'form-submit-link'
+    .col-md-9.wide-part
+      p.title-par Информация о профильных страницах
+      p.rules-upload
+        | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eget consectetur arcu,
+        | sit amet interdum ligula. Curabitur semper imperdiet scelerisque. Duis eleifend mi eget
+        | congue venenatis. Curabitur id quam ut felis congue dignissim sed ac tellus. Orci varius
+        | natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed nec lorem
+        | volutpat, dictum ipsum id, pulvinar ligula.
+.pane
+  .pane-title
+    p Смена пароля
+    span.icon-ic-more.more-span
+  hr.pane-hr
+  .pane-content
+    = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+      .col-md-6.form-half
+        = f.label :current_password, class: 'form-label', for: 'change-password'
+        = f.password_field :current_password, class: 'form-input', id: 'change-password'
+        = f.label :password, class: 'form-label', for: 'new-password'
+        = f.password_field :password, class: 'form-input', id: 'new-password'
+        = f.label :password_confirmation, class: 'form-label', for: 'password-confirm'
+        = f.password_field :password_confirmation, class: 'form-input', id: 'password-confirm'
+        = f.submit 'Change', class: 'form-submit'
