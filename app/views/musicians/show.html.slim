@@ -1,10 +1,11 @@
 #main-pane.pane
   .pane-title
     p Личная информация
-    span.more-span type="button" id="edit-musician" data-toggle="dropdown" = image_tag('more.svg')
-    ul.more-menu.dropdown-menu.dropdown-menu-right aria-labelledby="edit-musician" role="menu"
-      li role="presentation"
-        = link_to 'Edit musician page', edit_musician_path(@musician), role: 'menuitem', tabindex: '-1'
+    -if policy(@musician).edit?
+      span.more-span type='button' id='edit-musician' data-toggle='dropdown' = image_tag('more.svg')
+      ul.more-menu.dropdown-menu.dropdown-menu-right aria-labelledby='edit-musician' role='menu'
+        li role='presentation'
+          = link_to 'Edit musician page', edit_musician_path(@musician), role: 'menuitem', tabindex: '-1'
   hr.pane-hr
   .pane-content
     .col-md-3
