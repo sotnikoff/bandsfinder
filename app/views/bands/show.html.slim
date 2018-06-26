@@ -33,21 +33,25 @@
                   - if req.status_approved? || req.status_declined?
                     p= req.status.humanize
                   - else
-                    = form_tag(band_request_approve_path(id: req.id))
-                      = submit_tag 'Approve', class: 'form-submit'
-                    = form_tag(band_request_decline_path(id: req.id))
-                      = submit_tag 'Reject', class: 'form-submit'
-              p.title-par Отправить заявку
-              hr
-              - if current_user.musician
-                - if @has_request
-                  p Request already sent!
+                    .col-md-6
+                      = form_tag(band_request_approve_path(id: req.id))
+                        = submit_tag 'Approve', class: 'form-submit'
+                    .col-md-6
+                      = form_tag(band_request_decline_path(id: req.id))
+                        = submit_tag 'Reject', class: 'form-submit'
+              .clearfix
+              #request-user
+                p.title-par Отправить заявку
+                hr
+                - if current_user.musician
+                  - if @has_request
+                    p Request already sent!
+                  - else
+                    = form_tag(band_requests_create_path) do
+                      = hidden_field_tag :band_id, @band.id
+                      = submit_tag 'Submit request', class: 'form-submit'
                 - else
-                  = form_tag(band_requests_create_path) do
-                    = hidden_field_tag :band_id, @band.id
-                    = submit_tag 'Submit request', class: 'form-submit'
-              - else
-                p You cannot send your request because you are not a registered musician!
+                  p You cannot send your request because you are not a registered musician!
 
 
 / h1= "Band ##{@band.id}"
