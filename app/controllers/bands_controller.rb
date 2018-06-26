@@ -29,9 +29,18 @@ class BandsController < ApplicationController
 
   def edit
     @band = Band.find(params[:id])
+    authorize(@band)
   end
 
-  def update; end
+  def update
+    @band = Band.find(params[:id])
+    authorize(@band)
+    if @band.update(band_params)
+      redirect_to @band, notice: 'Band was successfully updated'
+    else
+      redirect_to @band, notice: 'Error happened when band was updating'
+    end
+  end
 
   def destroy; end
 
