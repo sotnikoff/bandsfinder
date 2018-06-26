@@ -8,7 +8,7 @@
       .col-md-6.form-half
         = f.label :description, class: 'form-label'
         = f.text_area :description, class: 'form-input', rows: 10
-        = f.submit nil, class:'form-submit'
+        = f.submit nil, class: 'form-submit'
       .col-md-6.form-half
         label.form-label Фото
         .img
@@ -32,8 +32,11 @@
         = submit_tag 'Add skill', class: 'form-submit'
     .col-md-6.form-half
       - @musician.musician_skills.each do |musician_skill|
-        = form_tag(musician_skill_path(musician_skill.id), method: :delete) do
-          = label_tag :musician_id, "#{musician_skill.skill.title} (#{musician_skill.comment})", class: 'form-label'
-          br
-          = hidden_field_tag :musician_id, @musician.id
-          = submit_tag 'Delete', class: 'form-submit'
+        .row.margin_clear.skills-wrapper
+          = form_tag(musician_skill_path(musician_skill.id), method: :delete) do
+            .col-md-3
+              = label_tag :musician_id, "#{musician_skill.skill.title} (#{musician_skill.comment})", class: 'form-label'
+              = hidden_field_tag :musician_id, @musician.id
+            .col-md-2
+              i.glyphicon.glyphicon-remove-sign.delete-skill-icon
+              / = submit_tag 'Delete', class: 'form-submit'
