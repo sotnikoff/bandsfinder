@@ -104,6 +104,7 @@ header {
 
 #user {
   float: right;
+  text-decoration: none;
 }
 
 #user-menu {
@@ -125,6 +126,7 @@ header {
 
 .username {
   @include roboto-light;
+  color: #000!important;
   font-size: 1.2rem;
   margin-top: 25px;
   float: right;
