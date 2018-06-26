@@ -34,9 +34,9 @@
                     p= req.status.humanize
                   - else
                     = form_tag(band_request_approve_path(id: req.id))
-                    = submit_tag 'Approve', class: 'form-submit'
+                      = submit_tag 'Approve', class: 'form-submit'
                     = form_tag(band_request_decline_path(id: req.id))
-                    = submit_tag 'Reject', class: 'form-submit'
+                      = submit_tag 'Reject', class: 'form-submit'
               p.title-par Отправить заявку
               hr
               - if current_user.musician
