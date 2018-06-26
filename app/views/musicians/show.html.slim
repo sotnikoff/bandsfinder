@@ -1,7 +1,10 @@
 #main-pane.pane
   .pane-title
     p Личная информация
-    span.more-span= image_tag('more.svg')
+    span.more-span type="button" id="edit-musician" data-toggle="dropdown" = image_tag('more.svg')
+    ul.more-menu.dropdown-menu.dropdown-menu-right aria-labelledby="edit-musician" role="menu"
+      li role="presentation"
+        = link_to 'Edit musician page', '', role: 'menuitem', tabindex: '-1'
   hr.pane-hr
   .pane-content
     .col-md-3
