@@ -22,10 +22,16 @@ nav#search-navbar.page-navbar
   .pane-content
     = search_form_for @query, url: search_musicians_path do |f|
       .col-md-6.form-half
-        label.form-label for='city'  Город
-        input#city.form-input name='city' placeholder='Москва' type='text' /
-        label.form-label for="experience"  Опыт
-        input#experience.form-input name="experience" placeholder='От 20 лет' type="text" /
+        = label_tag :country, 'Country', class: 'form-label', for: 'country'
+        = select_tag :country, [], class: 'form-select'
+        = label_tag :region, 'Region', class: 'form-label', for: 'region'
+        = select_tag :region, [], class: 'form-select'
+        = f.label :user_city_id_eq, class: 'form-label'
+        = f.select :user_city_id_eq, [], { include_blank: true }, { class: 'form-select', id: 'city' }
+        / label.form-label for='city'  Город
+        / input#city.form-input name='city' placeholder='Москва' type='text' /
+        / label.form-label for="experience"  Опыт
+        / input#experience.form-input name="experience" placeholder='От 20 лет' type="text" /
         = f.submit 'Поиск', class: 'form-submit'
       .col-md-6.form-half
         label.form-label for="q_musician_skills_skill_id_eq"  Навык/специальность
