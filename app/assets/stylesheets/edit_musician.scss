@@ -3,6 +3,12 @@
   margin: 0!important;
 }
 
+.delete-skill-icon-wrapper {
+  background: transparent;
+  border: none;
+  outline-style: none;
+}
+
 .delete-skill-icon {
   cursor: pointer;
   color: blue;
@@ -17,3 +23,4 @@
     margin-top: 20px!important;
   }
 }
+

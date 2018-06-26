@@ -38,6 +38,6 @@
               = label_tag :musician_id, "#{musician_skill.skill.title} (#{musician_skill.comment})", class: 'form-label'
               = hidden_field_tag :musician_id, @musician.id
             .col-md-2
-              = button_tag(type: 'submit') do
+              = button_tag(type: 'submit', class: 'delete-skill-icon-wrapper') do
                 i.glyphicon.glyphicon-remove-sign.delete-skill-icon
-              / = submit_tag 'Delete', class: 'form-submit'
+
