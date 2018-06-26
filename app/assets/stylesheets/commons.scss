@@ -104,6 +104,7 @@ header {
 
 #user {
   float: right;
+  text-decoration: none;
 }
 
 #user-menu {
@@ -125,6 +126,7 @@ header {
 
 .username {
   @include roboto-light;
+  color: #000!important;
   font-size: 1.2rem;
   margin-top: 25px;
   float: right;
@@ -274,7 +276,6 @@ aside {
   @include roboto-regular;
   color: #000;
   width: 80%;
-  margin-top: 10px;
   padding: 6px 8px 6px 8px;
   &[placeholder] {
     @include roboto-light;
@@ -290,7 +291,7 @@ aside {
   font-size: 1.4rem;
   @include roboto-light;
   font-weight: normal;
-  margin-bottom: 0 !important;
+  margin-bottom: 10px;
   line-height: 1;
 }
 
@@ -339,7 +340,7 @@ aside {
   width: 80%;
   padding: 8px 8px 9px 8px;
   background-color: transparent;
-  margin-top: 10px;
+  font-size: 14px;
 }
 
 .disabled-link {
@@ -382,4 +383,13 @@ aside {
     background: transparent;
     color: $logo_yellow;
   }
+}
+
+.more-menu {
+  top: 30px;
+}
+
+.notice {
+  text-align: center;
+  color: red;
 }

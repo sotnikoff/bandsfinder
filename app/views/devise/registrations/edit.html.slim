@@ -19,16 +19,20 @@
                 h4#myModalLabel.modal-title Подтверждение смены данных
               .modal-body
                 = f.label :current_password, class: 'form-label'
-                = f.password_field :current_password, class: 'form-input', placeholder: '******'
+                = f.password_field :current_password, class: 'form-input'
                 = f.submit 'Save', class: 'form-submit'
                 button.form-submit data-dismiss="modal" type="button" Отмена
       .col-md-6.form-half
+        = hidden_field :skip_city_load, nil, value: 'true'
         label.form-label for="country"  Страна
-        select#country.form-select name="country"
+        = select_tag :country,
+                options_for_select(Country.alphabetical.map {|c| [c.title, c.id]}, current_user.city.region.country.id), class: 'form-select', id: 'country'
         label.form-label for="region"  Регион
-        select#region.form-select name="region"
-        = f.label :city_id, for: 'city', class: 'form-label'
-        = f.select :city_id, [], {}, { id: 'city', class: 'form-select' }
+        = select_tag :region,
+                options_for_select(current_user.city.region.country.regions.all.map {|r| [r.title, r.id]}, current_user.city.region.id), class: 'form-select', id: 'region'
+        = f.label :city_id, for: 'id', class: 'form-label'
+        = f.select :city_id,
+                options_for_select(current_user.city.region.cities.all.map { |c| [c.title, c.id ] }, current_user.city.id), {}, class: 'form-select', id: 'city'
 .pane
   .pane-title
     p Фотография профиля
@@ -37,7 +41,7 @@
   .pane-content
     .col-md-3.narrow-part
       - if current_user.avatar.attached?
-        = image_tag(current_user.avatar.variant(combine_options: {resize: '700',
+        = image_tag(current_user.avatar.variant(combine_options: {resize: '900',
                 gravity: 'center', extent: '500x500'}), class: 'photo', alt: current_user.name)
       - else
         = image_tag 'default_user_0.jpg', class: 'photo', alt: current_user.name
@@ -57,7 +61,7 @@
                 h4#myModalLabelPicture.modal-title Подтверждение смены данных
               .modal-body
                 = f.label :current_password, class: 'form-label', for: 'current-password-pic'
-                = f.password_field :current_password, class: 'form-input', id: 'current-password-pic', placeholder: '******'
+                = f.password_field :current_password, class: 'form-input', id: 'current-password-pic'
                 = f.submit 'Save', class: 'form-submit'
                 button.form-submit data-dismiss="modal" type="button" Отмена
     .col-md-9.wide-part
@@ -99,9 +103,9 @@
     = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
       .col-md-6.form-half
         = f.label :current_password, class: 'form-label', for: 'change-password'
-        = f.password_field :current_password, class: 'form-input', id: 'change-password', placeholder: '******'
+        = f.password_field :current_password, class: 'form-input', id: 'change-password'
         = f.label :password, class: 'form-label', for: 'new-password'
-        = f.password_field :password, class: 'form-input', id: 'new-password', placeholder: '******'
+        = f.password_field :password, class: 'form-input', id: 'new-password'
         = f.label :password_confirmation, class: 'form-label', for: 'password-confirm'
-        = f.password_field :password_confirmation, class: 'form-input', id: 'password-confirm', placeholder: '******'
+        = f.password_field :password_confirmation, class: 'form-input', id: 'password-confirm'
         = f.submit 'Change', class: 'form-submit'

@@ -7,10 +7,12 @@ html
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag 'application'
   body
-    / p.notice
-    /   = notice
-    / p.alert
-    /   = alert
+    - if notice
+      p.notice
+        = notice
+    - if alert
+      p.alert
+        = alert
     / .login
     /   - if current_user
     /     p
@@ -35,7 +37,8 @@ html
               = link_to profile_path(current_user) do
                 #user
                   - if current_user.avatar.attached?
-                    .userpic style="background-image: url('#{url_for(current_user.avatar)}')"
+                    .userpic style="background-image: url('#{url_for(current_user.avatar.variant(combine_options: {resize: '550',
+                        gravity: 'center', extent: '300x300'}))}')"
                   - else
                     .userpic style="background-image: url('#{asset_url('default_user_0.jpg')}')"
                   p.username= current_user.name

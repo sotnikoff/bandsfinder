@@ -1,12 +1,16 @@
 #main-pane.pane
   .pane-title
     p Личная информация
-    span.more-span= image_tag('more.svg')
+    -if policy(@musician).edit?
+      span.more-span type='button' id='edit-musician' data-toggle='dropdown' = image_tag('more.svg')
+      ul.more-menu.dropdown-menu.dropdown-menu-right aria-labelledby='edit-musician' role='menu'
+        li role='presentation'
+          = link_to 'Edit musician page', edit_musician_path(@musician), role: 'menuitem', tabindex: '-1'
   hr.pane-hr
   .pane-content
     .col-md-3
       - if @musician.user.avatar.attached?
-        = image_tag(@musician.user.avatar.variant(combine_options: {resize: '700',
+        = image_tag(@musician.user.avatar.variant(combine_options: {resize: '900',
                 gravity: 'center', extent: '500x500'}), class: 'photo', alt: @musician.user.name)
       - else
         = image_tag 'default_user_0.jpg', class: 'photo', alt: @musician.user.name
@@ -20,12 +24,7 @@
           .col-md-6
             p Краткая информация
           .col-md-6
-            p
-              | Ангус развлекает публику, интенсивно прыгая и бегая взад-вперёд по сцене, не
-              | прекращая
-              | играть на гитаре. Во времена Бон Скотта в AC/DC, Ангус часто забирался к нему на
-              | плечи
-              | во время концертов, и они вместе пробирались через публику.
+            p= @musician.description
       .row
         #bands-skills
           .col-md-6

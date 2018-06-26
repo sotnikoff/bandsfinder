@@ -38,7 +38,8 @@ $ ->
         appendCity(city) for city in response.data
     )
 
-  getCountries()
+  if $('#skip_city_load_').val() != 'true'
+    getCountries()
 
   countryTag.on('change', (e) -> getRegions(e.target.value))
   regionTag.on('change', (e) -> getCities(e.target.value))
